@@ -1,0 +1,7 @@
+*.epub
+*.mobi
+*.pdf
+*.aux
+*.log
+*.synctex.gz
+kindlegen

@@ -1,0 +1,20 @@
+filename: "My Ebook"
+
+default:
+  coverImage: "cover.jpg"
+  files:
+    - "ebook.tex"
+
+  metadata:
+    language: "fr-FR"
+    lang: "fr"
+
+epub:
+  metadata:
+    identifier: "urn:isbn:1234567890123"
+    rights: "ISBN: 123-4-5678901-2-3"
+
+mobi:
+  metadata:
+    identifier: "urn:isbn:1234567890145"
+    rights: "ISBN: 123-4-5678901-4-5"
