@@ -1,17 +1,21 @@
 # Reliure
 
+[![License: GPL-3.0](https://img.shields.io/github/license/GreatWizard/reliure)](https://github.com/GreatWizard/reliure/blob/master/LICENSE.md)
+[![Liberapay](http://img.shields.io/liberapay/patrons/GreatWizard.svg?logo=liberapay)](https://liberapay.com/GreatWizard/)
+[![Beerpay](https://beerpay.io/GreatWizard/ember-circleci/badge.svg?style=flat)](https://beerpay.io/GreatWizard/reliure)
+
 Bind your LaTeX books for e-readers.
 
 This tools is able to generate epub or mobi files.
 
 ## Installation
 
-You need to have node installed on your computer:
+You need to have Node.js installed on your computer: https://nodejs.org/en/download/
 
-Then you can install the BookBinding tools globally in order to be able to execute it wherever you want:
+Then, you can install the Reliure tool globally in order to be able to execute it wherever you want:
 
-```sh
-npm install -g bookbinding
+```shell
+npm install -g reliure@latest
 ```
 
 ## Usage
@@ -45,18 +49,18 @@ mobi:
 
 ### Commands
 
-Usage: reliure [options]
+Usage: `reliure [options]`
 
-Options:
+#### Options:
 
 - `--epub`: specify to bound the epub format
 - `--mobi`: specify to bound the mobi format
 - `-v`, `--version`: print the version number
 - `-h`, `--help`: print usage information
 
-Examples:
+#### Examples:
 
-```sh
+```shell
 reliure --epub --mobi
 reliure -v
 reliure --version
