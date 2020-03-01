@@ -47,6 +47,7 @@
     "minimist": "^1.2.0",
     "node-pandoc-promise": "^0.0.6",
     "request": "^2.88.2",
+    "tar": "^6.0.1",
     "unzipper": "^0.10.10"
   },
   "devDependencies": {
