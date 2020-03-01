@@ -25,23 +25,31 @@ npm install -g reliure@latest
 Your entry point is a configuration file named `reliure.yml`:
 
 ```yaml
+# Name of the output file
 filename: "My Ebook"
 
+# Default configuration applied to every format
 default:
+  # Cover image of the ebook
   coverImage: "cover.jpg"
+  # Files used to build the ebook (works with only one file currently)
   files:
     - "my-ebook.tex"
 
+  # Metadata following pandoc's options https://pandoc.org/MANUAL.html#epub-metadata
   metadata:
     language: "fr-FR"
     lang: "fr"
 
+# Overridden configuration for epub format
 epub:
   metadata:
     identifier: "urn:isbn:1234567890123"
     rights: "ISBN: 123-4-5678901-2-3"
 
+# Overridden configuration for mobi format
 mobi:
+  coverImage: "cover-mobi.jpg"
   metadata:
     identifier: "urn:isbn:1234567890145"
     rights: "ISBN: 123-4-5678901-4-5"
