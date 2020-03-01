@@ -29,7 +29,8 @@
     "bookbind",
     "bookbinding",
     "kindle",
-    "kindlegen"
+    "kindlegen",
+    "pandoc"
   ],
   "main": "index.js",
   "bin": {

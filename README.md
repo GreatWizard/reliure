@@ -6,11 +6,16 @@
 
 Bind your LaTeX books for e-readers.
 
-This tools is able to generate epub or mobi files.
+This terminal tool is able to generate epub or mobi files.
+
+![Screenshot of Reliure running in a terminal](reliure-screenshot.png)
 
 ## Installation
 
-You need to have Node.js installed on your computer: https://nodejs.org/en/download/
+You need to have on your computer:
+
+- Node.js: https://nodejs.org/en/download/
+- Pandoc: https://pandoc.org/installing.html
 
 Then, you can install the Reliure tool globally in order to be able to execute it wherever you want:
 
