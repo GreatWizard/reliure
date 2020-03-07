@@ -1,5 +1,6 @@
 # Reliure
 
+[![Build Status](https://travis-ci.com/GreatWizard/reliure.svg?branch=master)](https://travis-ci.com/GreatWizard/reliure)
 [![License: GPL-3.0](https://img.shields.io/github/license/GreatWizard/reliure)](https://github.com/GreatWizard/reliure/blob/master/LICENSE.md)
 [![Liberapay](http://img.shields.io/liberapay/patrons/GreatWizard.svg?logo=liberapay)](https://liberapay.com/GreatWizard/)
 [![Beerpay](https://beerpay.io/GreatWizard/ember-circleci/badge.svg?style=flat)](https://beerpay.io/GreatWizard/reliure)

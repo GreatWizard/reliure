@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-const log = console.log
 const clear = require("clear")
 
 const build = require("./lib/build")
@@ -10,6 +9,9 @@ const mergeConfig = require("./lib/merge-config")
 const { printTitle, info, success, error } = require("./lib/message")
 const { getOptions, printVersion, printHelp } = require("./lib/options")
 const readConfig = require("./lib/read-config")
+
+const { log, trace } = console
+const { exit } = process
 
 const settings = { kindlegen: false }
 
@@ -51,8 +53,8 @@ const settings = { kindlegen: false }
             resolve()
           })
           .catch(e => {
-            console.log(e)
-            reject(`Error with the format "${format}"`)
+            error(`Error with the format "${format}"`)
+            reject(e)
           })
       })
     )
@@ -62,4 +64,7 @@ const settings = { kindlegen: false }
   log("✨ Done.")
 })
   .call(this)
-  .catch(e => error(e))
+  .catch(e => {
+    trace(e)
+    exit(1)
+  })

@@ -1,0 +1,24 @@
+---
+language: node_js
+node_js:
+  - "10"
+  - "12"
+  - "stable"
+
+sudo: false
+
+cache:
+  directories:
+    - node_modules
+
+before_install:
+  - sudo apt-get -y install pandoc
+
+install:
+  - yarn install
+
+before_script:
+  - cd tests/latex-one-file && node ../install.js
+
+script:
+  - yarn test

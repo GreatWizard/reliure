@@ -36,6 +36,9 @@
   "bin": {
     "reliure": "index.js"
   },
+  "scripts": {
+    "test": "cd tests/latex-one-file && node ../../index.js --epub --mobi"
+  },
   "dependencies": {
     "chalk": "^3.0.0",
     "clear": "^0.1.0",
