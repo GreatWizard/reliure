@@ -6,16 +6,27 @@
 
 Bind your LaTeX books for e-readers.
 
-This terminal tool is able to generate epub or mobi files.
-
 ![Screenshot of Reliure running in a terminal](reliure-screenshot.png)
 
-## Installation
+## Features
+
+- Compiles LaTeX files in epub and mobi
+- Cross-platform compatibility (Windows, Mac and Linux)
+- Configuration in a single file
+- Replaces part of the configuration for a specific format
+- Supports cover image
+- Supports metadata
+
+ℹ️ KindleGen does not work on 64-bit MacOS. On this platform, you can only compile in epub.
+
+## Prerequisites
 
 You need to have on your computer:
 
 - Node.js: https://nodejs.org/en/download/
 - Pandoc: https://pandoc.org/installing.html
+
+## Installation
 
 Then, you can install the Reliure tool globally in order to be able to execute it wherever you want:
 
@@ -31,20 +42,19 @@ Your entry point is a configuration file named `reliure.yml`:
 
 ```yaml
 # Name of the output file
-filename: "My Ebook"
+filename: My Ebook
 
 # Default configuration applied to every format
 default:
   # Cover image of the ebook
-  coverImage: "cover.jpg"
+  coverImage: cover.jpg
   # Files used to build the ebook (works with only one file currently)
   files:
-    - "my-ebook.tex"
+    - my-ebook.tex
 
   # Metadata following pandoc's options https://pandoc.org/MANUAL.html#epub-metadata
   metadata:
-    language: "fr-FR"
-    lang: "fr"
+    language: fr-FR
 
 # Overridden configuration for epub format
 epub:
@@ -54,7 +64,7 @@ epub:
 
 # Overridden configuration for mobi format
 mobi:
-  coverImage: "cover-mobi.jpg"
+  coverImage: cover-mobi.jpg
   metadata:
     identifier: "urn:isbn:1234567890145"
     rights: "ISBN: 123-4-5678901-4-5"

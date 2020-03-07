@@ -1,13 +1,12 @@
-filename: "My Ebook"
+filename: My Ebook
 
 default:
-  coverImage: "cover.jpg"
+  coverImage: cover.jpg
   files:
-    - "ebook.tex"
+    - ebook.tex
 
   metadata:
-    language: "fr-FR"
-    lang: "fr"
+    language: fr-FR
 
 epub:
   metadata:
