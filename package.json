@@ -40,7 +40,8 @@
     "pretest": "node scripts/github-releases.js",
     "test": "npm-run-all test:*",
     "test:latex": "cd tests/latex-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
-    "test:markdown": "cd tests/markdown-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub"
+    "test:markdown": "cd tests/markdown-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
+    "build": "pkg . --out-path=build"
   },
   "dependencies": {
     "archiver": "^5.2.0",
@@ -54,6 +55,7 @@
     "lodash.merge": "^4.6.2",
     "minimist": "^1.2.0",
     "node-pandoc-promise": "^0.0.6",
+    "pkg": "^4.4.9",
     "replace": "^1.2.0",
     "request": "^2.88.2",
     "tar": "^6.0.1",
@@ -70,5 +72,15 @@
   },
   "engines": {
     "node": ">=10.0.0"
+  },
+  "pkg": {
+    "targets": [
+      "node14-linux-x64",
+      "node14-macos-x64",
+      "node14-win-x64"
+    ],
+    "assets": [
+      "./node_modules/figlet/fonts/Standard.flf"
+    ]
   }
 }
