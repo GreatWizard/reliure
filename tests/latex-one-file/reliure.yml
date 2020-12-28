@@ -2,11 +2,13 @@ filename: My Ebook
 
 default:
   coverImage: cover.jpg
+  styleSheets:
+    - style.css
   files:
     - ebook.tex
 
   metadata:
-    language: fr-FR
+    lang: fr-FR
 
 epub:
   metadata:
