@@ -16,6 +16,7 @@ Bind your LaTeX books for e-readers.
 - Replaces part of the configuration for a specific format
 - Supports cover image
 - Supports metadata
+- Supports custom CSS
 
 ℹ️ KindleGen does not work on 64-bit MacOS. On this platform, you can only compile in epub.
 
@@ -48,6 +49,11 @@ filename: My Ebook
 default:
   # Cover image of the ebook
   coverImage: cover.jpg
+  # Deactivate the default CSS (off by default)
+  ignoreDefaultStyleSheet: on/off
+  # Custom Style sheets appends to the default stylesheet
+  styleSheets:
+    - style.css
   # Files used to build the ebook (works with only one file currently)
   files:
     - my-ebook.tex
