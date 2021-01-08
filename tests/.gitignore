@@ -4,4 +4,4 @@
 *.aux
 *.log
 *.synctex.gz
-kindlegen
+kindlegen*
