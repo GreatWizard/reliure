@@ -18,8 +18,5 @@ before_install:
 install:
   - yarn install
 
-before_script:
-  - cd tests/latex-one-file && node ../install.js
-
 script:
   - yarn test

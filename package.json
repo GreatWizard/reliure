@@ -37,7 +37,7 @@
     "reliure": "index.js"
   },
   "scripts": {
-    "test": "cd tests/latex-one-file && node ../../index.js --epub --mobi"
+    "test": "cd tests/latex-one-file && ./../../index.js --epub --mobi"
   },
   "dependencies": {
     "chalk": "^3.0.0",
