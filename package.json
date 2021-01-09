@@ -40,6 +40,7 @@
     "test": "cd tests/latex-one-file && ./../../index.js --epub --mobi"
   },
   "dependencies": {
+    "archiver": "^5.2.0",
     "chalk": "^3.0.0",
     "clean-css": "^4.2.3",
     "clear": "^0.1.0",
@@ -50,6 +51,7 @@
     "lodash.merge": "^4.6.2",
     "minimist": "^1.2.0",
     "node-pandoc-promise": "^0.0.6",
+    "replace": "^1.2.0",
     "request": "^2.88.2",
     "tar": "^6.0.1",
     "unzipper": "^0.10.10"
