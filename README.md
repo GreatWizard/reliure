@@ -61,8 +61,13 @@ default:
 
   # Metadata following pandoc's options https://pandoc.org/MANUAL.html#epub-metadata
   metadata:
-    language: fr-FR
+    lang: fr-FR
   
+  # Extra metadata
+  extraMetadata:
+    "calibre:series": My Collection
+    "calibre:series_index": 1
+
   # Example of substitutions for chapters, cover and title page files
   textSubstitutions:
     - regex: <p>\*{3}</p>
