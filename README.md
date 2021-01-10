@@ -17,6 +17,7 @@ Bind your LaTeX books for e-readers.
 - Supports cover image
 - Supports metadata
 - Supports custom CSS
+- Supports automatic regexp substitutions
 
 ℹ️ KindleGen does not work on 64-bit MacOS. On this platform, you can only compile in epub.
 
@@ -61,6 +62,21 @@ default:
   # Metadata following pandoc's options https://pandoc.org/MANUAL.html#epub-metadata
   metadata:
     language: fr-FR
+  
+  # Example of substitutions for chapters, cover and title page files
+  textSubstitutions:
+    - regex: <p>\*{3}</p>
+      replacement: <p class="center">***</p>
+
+  # Example of substitutions for navigation file
+  navSubstitutions:
+    - regex: <!DOCTYPE html>
+      replacement: <!DOCTYPE html2>
+
+  # Example of substitutions for the OPF file
+  opfSubstitutions:
+    - regex: <dc:language>fr-FR</dc:language>
+      replacement: <dc:language>fr-BE</dc:language>
 
 # Overridden configuration for epub format
 epub:

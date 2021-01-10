@@ -10,6 +10,10 @@ default:
   metadata:
     lang: fr-FR
 
+  textSubstitutions:
+    - regex: <p>\*{3}</p>
+      replacement: <p class="center">***</p>
+
 epub:
   metadata:
     identifier: "urn:isbn:1234567890123"
