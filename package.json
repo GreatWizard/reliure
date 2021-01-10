@@ -37,7 +37,8 @@
     "reliure": "index.js"
   },
   "scripts": {
-    "test": "cd tests/latex-one-file && ./../../index.js --epub --mobi"
+    "pretest": "node scripts/github-releases.js",
+    "test": "cd tests/latex-one-file && ./../../index.js --epub --mobi && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub"
   },
   "dependencies": {
     "archiver": "^5.2.0",
@@ -57,8 +58,12 @@
     "unzipper": "^0.10.10"
   },
   "devDependencies": {
+    "download-github-release": "^0.3.2",
     "eslint": "^6.8.0",
     "eslint-plugin-node": "^11.0.0"
+  },
+  "githubReleases": {
+    "w3c/epubcheck": "v4.2.4"
   },
   "engines": {
     "node": ">=10.0.0"
