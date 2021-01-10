@@ -1,6 +1,6 @@
 # Reliure
 
-[![Build Status](https://travis-ci.com/GreatWizard/reliure.svg?branch=master)](https://travis-ci.com/GreatWizard/reliure)
+[![Build Status](https://github.com/GreatWizard/reliure/workflows/test/badge.svg)](https://github.com/GreatWizard/reliure/actions?query=workflow%3Atest)
 [![License: GPL-3.0](https://img.shields.io/github/license/GreatWizard/reliure)](https://github.com/GreatWizard/reliure/blob/master/LICENSE.md)
 [![Liberapay](http://img.shields.io/liberapay/patrons/GreatWizard.svg?logo=liberapay)](https://liberapay.com/GreatWizard/)
 
