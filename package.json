@@ -1,7 +1,7 @@
 {
   "name": "reliure",
   "version": "1.1.0",
-  "description": "Bind your LaTeX books for e-readers.",
+  "description": "Bind your LaTeX and Markdown books for e-readers.",
   "homepage": "https://reliure.greatwizard.fr",
   "author": {
     "name": "Guillaume Gérard",
@@ -38,7 +38,8 @@
   },
   "scripts": {
     "pretest": "node scripts/github-releases.js",
-    "test": "cd tests/latex-one-file && ./../../index.js --epub --mobi && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub"
+    "test:latex": "cd tests/latex-one-file && ./../../index.js --epub --mobi && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
+    "test:markdown": "cd tests/markdown-one-file && ./../../index.js --epub --mobi && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub"
   },
   "dependencies": {
     "archiver": "^5.2.0",

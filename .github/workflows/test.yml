@@ -1,7 +1,7 @@
 name: test
 
 on: [push]
-      
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -37,4 +37,5 @@ jobs:
             ${{ runner.os }}-github_releases
       - run: sudo apt-get -y install pandoc
       - run: yarn install
-      - run: yarn test
+      - run: yarn test:latex
+      - run: yarn test:markdown

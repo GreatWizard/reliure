@@ -4,13 +4,13 @@
 [![License: GPL-3.0](https://img.shields.io/github/license/GreatWizard/reliure)](https://github.com/GreatWizard/reliure/blob/master/LICENSE.md)
 [![Liberapay](http://img.shields.io/liberapay/patrons/GreatWizard.svg?logo=liberapay)](https://liberapay.com/GreatWizard/)
 
-Bind your LaTeX books for e-readers.
+Bind your LaTeX and Markdown books for e-readers.
 
 ![Screenshot of Reliure running in a terminal](reliure-screenshot.png)
 
 ## Features
 
-- Compiles LaTeX files in epub and mobi
+- Compiles LaTeX and Markdown files in epub and mobi
 - Cross-platform compatibility (Windows, Mac and Linux)
 - Configuration in a single file
 - Replaces part of the configuration for a specific format
@@ -57,7 +57,7 @@ default:
     - style.css
   # Files used to build the ebook (works with only one file currently)
   files:
-    - my-ebook.tex
+    - my-ebook.md
 
   # Metadata following pandoc's options https://pandoc.org/MANUAL.html#epub-metadata
   metadata:
