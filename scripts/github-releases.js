@@ -21,7 +21,7 @@ Object.keys(releases).forEach((project) => {
       fs.rmdirSync(dir, { recursive: true })
     }
     fs.mkdirSync(dir, { recursive: true })
-    
+
     downloadReleases(user, repo, dir, (release) => {
       return release.tag_name === version
     })

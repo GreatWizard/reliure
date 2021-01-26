@@ -10,10 +10,12 @@ Bind your LaTeX and Markdown books for e-readers.
 
 ## Features
 
-- Compiles LaTeX and Markdown files in epub and mobi
+- Compiles LaTeX and Markdown files in epub, mobi and pdf
 - Cross-platform compatibility (Windows, Mac and Linux)
 - Configuration in a single file
 - Replaces part of the configuration for a specific format
+### Features only for ebooks (epub and mobi)
+
 - Supports cover image
 - Supports metadata
 - Supports custom CSS

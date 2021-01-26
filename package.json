@@ -38,8 +38,8 @@
   },
   "scripts": {
     "pretest": "node scripts/github-releases.js",
-    "test:latex": "cd tests/latex-one-file && ./../../index.js --epub --mobi && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
-    "test:markdown": "cd tests/markdown-one-file && ./../../index.js --epub --mobi && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub"
+    "test:latex": "cd tests/latex-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
+    "test:markdown": "cd tests/markdown-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub"
   },
   "dependencies": {
     "archiver": "^5.2.0",
