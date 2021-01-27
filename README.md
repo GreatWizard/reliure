@@ -14,9 +14,9 @@ Bind your LaTeX and Markdown books for e-readers.
 - Cross-platform compatibility (Windows, Mac and Linux)
 - Configuration in a single file
 - Replaces part of the configuration for a specific format
+- Supports cover image
 ### Features only for ebooks (epub and mobi)
 
-- Supports cover image
 - Supports metadata
 - Supports custom CSS
 - Supports automatic regexp substitutions
