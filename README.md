@@ -107,13 +107,14 @@ Usage: `reliure [options]`
 
 - `--epub`: specify to bound the epub format
 - `--mobi`: specify to bound the mobi format
+- `--pdf`: specify to bound the pdf format
 - `-v`, `--version`: print the version number
 - `-h`, `--help`: print usage information
 
 #### Examples:
 
 ```shell
-reliure --epub --mobi
+reliure --epub --mobi --pdf
 reliure -v
 reliure --version
 ```
