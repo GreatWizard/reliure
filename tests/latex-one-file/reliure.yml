@@ -3,11 +3,14 @@ filename: My Ebook
 default:
   coverImage: ../cover.jpg
   styleSheets:
-    - style.css
+    - ../style.css
   files:
     - ebook.tex
 
   metadata:
+    title: Test - Markdown - Markdown in one file
+    author: Guillaume Gérard
+    date: 2020-11
     lang: fr-FR
 
   extraMetadata:

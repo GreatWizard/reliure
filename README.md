@@ -15,9 +15,10 @@ Bind your LaTeX and Markdown books for e-readers.
 - Configuration in a single file
 - Replaces part of the configuration for a specific format
 - Supports cover image
+- Supports metadata
 ### Features only for ebooks (epub and mobi)
 
-- Supports metadata
+- Supports custom metadata
 - Supports custom CSS
 - Supports automatic regexp substitutions
 
@@ -63,6 +64,9 @@ default:
 
   # Metadata following pandoc's options https://pandoc.org/MANUAL.html#epub-metadata
   metadata:
+    title: Test Book
+    author: Guillaume Gérard
+    date: 2020-11
     lang: fr-FR
   
   # Extra metadata
@@ -97,6 +101,13 @@ mobi:
   metadata:
     identifier: "urn:isbn:1234567890145"
     rights: "ISBN: 123-4-5678901-4-5"
+
+# Overridden configuration for pdf format
+pdf:
+  coverImage: cover-pdf.jpg
+  metadata:
+    identifier: "urn:isbn:1234567890167"
+    rights: "ISBN: 123-4-5678901-6-7"
 ```
 
 ### Commands

@@ -1,10 +1,3 @@
----
-title: Test - Markdown - Markdown in one file
-author: Guillaume Gérard
-date: 2020
-lang: fr-FR
----
-
 # Lorem ipsum
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
