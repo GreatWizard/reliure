@@ -16,6 +16,7 @@ Bind your LaTeX and Markdown books for e-readers.
 - Replaces part of the configuration for a specific format
 - Supports cover image
 - Supports metadata
+ 
 ### Features only for ebooks (epub and mobi)
 
 - Supports custom metadata
@@ -104,10 +105,15 @@ mobi:
 
 # Overridden configuration for pdf format
 pdf:
-  coverImage: cover-pdf.jpg
+  coverImage: ../cover-pdf.jpg
+  # fourth cover option is only used by pdf
+  fourthCoverImage: ../fourth-cover-pdf.jpg
   metadata:
     identifier: "urn:isbn:1234567890167"
     rights: "ISBN: 123-4-5678901-6-7"
+  # latex packages option is only used by pdf
+  latexPackages:
+    - "[frenchb]{babel}"
 ```
 
 ### Commands
