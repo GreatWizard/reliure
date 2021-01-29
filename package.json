@@ -1,7 +1,7 @@
 {
   "name": "reliure",
   "version": "1.5.0",
-  "description": "Bind your LaTeX and Markdown books for e-readers.",
+  "description": "Bind your books for e-readers.",
   "homepage": "https://reliure.greatwizard.fr",
   "author": {
     "name": "Guillaume Gérard",
@@ -17,8 +17,11 @@
   "license": "GPL-3.0",
   "keywords": [
     "reliure",
-    "markdown",
+    "word",
+    "docx",
+    "odt",
     "latex",
+    "markdown",
     "epub",
     "mobi",
     "pdf",
@@ -39,8 +42,10 @@
   "scripts": {
     "pretest": "node scripts/github-releases.js",
     "test": "npm-run-all test:*",
+    "test:docx": "cd tests/docx-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/docx-one-file/*.epub",
     "test:latex": "cd tests/latex-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
     "test:markdown": "cd tests/markdown-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
+    "test:odt": "cd tests/odt-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/odt-one-file/*.epub",
     "build": "pkg . --out-path=build"
   },
   "dependencies": {

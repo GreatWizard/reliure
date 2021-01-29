@@ -4,19 +4,19 @@
 [![License: GPL-3.0](https://img.shields.io/github/license/GreatWizard/reliure)](https://github.com/GreatWizard/reliure/blob/master/LICENSE.md)
 [![Liberapay](http://img.shields.io/liberapay/patrons/GreatWizard.svg?logo=liberapay)](https://liberapay.com/GreatWizard/)
 
-Bind your LaTeX and Markdown books for e-readers.
+Bind your books for e-readers.
 
 ![Screenshot of Reliure running in a terminal](reliure-screenshot.png)
 
 ## Features
 
-- Compiles LaTeX and Markdown files in epub, mobi and pdf
+- Compiles Word docx, ODT, Markdown, LaTeX... files in epub, mobi and pdf
 - Cross-platform compatibility (Windows, Mac and Linux)
 - Configuration in a single file
 - Replaces part of the configuration for a specific format
 - Supports cover image
 - Supports metadata
- 
+
 ### Features only for ebooks (epub and mobi)
 
 - Supports custom metadata
@@ -29,16 +29,16 @@ Bind your LaTeX and Markdown books for e-readers.
 
 You need to have on your computer:
 
-- Node.js: https://nodejs.org/en/download/
 - Pandoc: https://pandoc.org/installing.html
+- MiKTeX: https://miktex.org/download
 
 ## Installation
 
-Then, you can install the Reliure tool globally in order to be able to execute it wherever you want:
+Then, you can download the [latest release](https://github.com/GreatWizard/reliure/releases/latest) for your computer:
 
-```shell
-npm install -g reliure@latest
-```
+- Windows: https://github.com/GreatWizard/reliure/releases/download/latest/reliure-win.exe
+- MacOS: https://github.com/GreatWizard/reliure/releases/download/latest/reliure-macos
+- Linux: https://github.com/GreatWizard/reliure/releases/download/latest/reliure-linux
 
 ## Usage
 
@@ -61,7 +61,7 @@ default:
     - style.css
   # Files used to build the ebook (works with only one file currently)
   files:
-    - my-ebook.md
+    - my-ebook.docx
 
   # Metadata following pandoc's options https://pandoc.org/MANUAL.html#epub-metadata
   metadata:
@@ -69,7 +69,7 @@ default:
     author: Guillaume Gérard
     date: 2020-11
     lang: fr-FR
-  
+
   # Extra metadata
   extraMetadata:
     "calibre:series": My Collection
