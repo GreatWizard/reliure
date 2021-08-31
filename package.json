@@ -63,7 +63,7 @@
     "pkg": "^4.4.9",
     "replace": "^1.2.0",
     "request": "^2.88.2",
-    "tar": "^6.0.1",
+    "tar": "^6.1.9",
     "unzipper": "^0.10.10"
   },
   "devDependencies": {
