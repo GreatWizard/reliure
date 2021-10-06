@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ '10', '12', '14', '15' ]
+        node: [ '10', '12', '14', '16' ]
     name: Node ${{ matrix.node }}
     steps:
       - uses: actions/checkout@v2
@@ -37,4 +37,5 @@ jobs:
             ${{ runner.os }}-github_releases
       - run: sudo apt-get -y install pandoc
       - run: yarn install
+      - run: yarn lint
       - run: yarn test

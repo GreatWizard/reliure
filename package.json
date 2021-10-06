@@ -40,40 +40,42 @@
     "reliure": "index.js"
   },
   "scripts": {
+    "lint": "eslint . --cache",
+    "lint:fix": "eslint . --fix",
     "pretest": "node scripts/github-releases.js",
     "test": "npm-run-all test:*",
-    "test:docx": "cd tests/docx-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/docx-one-file/*.epub",
-    "test:latex": "cd tests/latex-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
-    "test:markdown": "cd tests/markdown-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
-    "test:odt": "cd tests/odt-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/odt-one-file/*.epub",
+    "test:docx-one-file": "cd tests/docx-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/docx-one-file/*.epub",
+    "test:latex-one-file": "cd tests/latex-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
+    "test:markdown-one-file": "cd tests/markdown-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
+    "test:odt-one-file": "cd tests/odt-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/odt-one-file/*.epub",
     "build": "pkg . --out-path=build"
   },
   "dependencies": {
-    "archiver": "^5.2.0",
-    "chalk": "^3.0.0",
-    "clean-css": "^4.2.3",
+    "archiver": "^5.3.0",
+    "chalk": "^4.1.2",
+    "clean-css": "^5.2.1",
     "clear": "^0.1.0",
-    "cli-progress": "^3.6.0",
-    "figlet": "^1.3.0",
-    "inquirer": "^7.0.4",
-    "js-yaml": "^3.13.1",
+    "cli-progress": "^3.9.1",
+    "figlet": "^1.5.2",
+    "inquirer": "^8.2.0",
+    "js-yaml": "^4.1.0",
     "lodash.merge": "^4.6.2",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.5",
     "node-pandoc-promise": "^0.0.6",
-    "pkg": "^4.4.9",
-    "replace": "^1.2.0",
+    "pkg": "^5.3.3",
+    "replace": "^1.2.1",
     "request": "^2.88.2",
-    "tar": "^6.0.1",
+    "tar": "^6.1.11",
     "unzipper": "^0.10.10"
   },
   "devDependencies": {
     "download-github-release": "^0.3.2",
-    "eslint": "^6.8.0",
+    "eslint": "^7.32.0",
     "eslint-plugin-node": "^11.0.0",
     "npm-run-all": "^4.1.5"
   },
   "githubReleases": {
-    "w3c/epubcheck": "v4.2.4"
+    "w3c/epubcheck": "v4.2.6"
   },
   "engines": {
     "node": ">=10.0.0"
