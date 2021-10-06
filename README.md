@@ -36,9 +36,9 @@ You need to have on your computer:
 
 Then, you can download the [latest release](https://github.com/GreatWizard/reliure/releases/latest) for your computer:
 
-- Windows: https://github.com/GreatWizard/reliure/releases/download/latest/reliure-win.exe
-- MacOS: https://github.com/GreatWizard/reliure/releases/download/latest/reliure-macos
-- Linux: https://github.com/GreatWizard/reliure/releases/download/latest/reliure-linux
+- Windows: https://github.com/GreatWizard/reliure/releases/latest/download/reliure-win.exe
+- MacOS: https://github.com/GreatWizard/reliure/releases/latest/download/reliure-macos
+- Linux: https://github.com/GreatWizard/reliure/releases/latest/download/reliure-linux
 
 ## Usage
 
