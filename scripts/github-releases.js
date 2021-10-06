@@ -13,8 +13,11 @@ Object.keys(releases).forEach((project) => {
   let dir = path.join(process.cwd(), outputdir, user, repo)
   let alreadyInstalledVersion = undefined
   try {
-    alreadyInstalledVersion = fs.readFileSync(path.join(dir, ".github-release-version"), "utf8")
-  } catch(err) {
+    alreadyInstalledVersion = fs.readFileSync(
+      path.join(dir, ".github-release-version"),
+      "utf8"
+    )
+  } catch (err) {
     // This is fine.
   }
   if (version !== alreadyInstalledVersion) {
@@ -27,7 +30,11 @@ Object.keys(releases).forEach((project) => {
       return release.tag_name === version
     })
       .then(function () {
-        fs.writeFileSync(path.join(dir, ".github-release-version"), version, "utf8")
+        fs.writeFileSync(
+          path.join(dir, ".github-release-version"),
+          version,
+          "utf8"
+        )
         console.log("✨  Github releases download done.")
       })
       .catch(function (err) {
