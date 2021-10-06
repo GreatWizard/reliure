@@ -1,3 +1,4 @@
+// eslint-disable-next-line node/no-unpublished-require
 const downloadReleases = require("download-github-release")
 const packageJson = require("../package.json")
 const fs = require("fs")
