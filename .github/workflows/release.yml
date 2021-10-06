@@ -1,68 +1,29 @@
+name: Release
+
 on:
   push:
     tags:
-    - 'v*'
-name: Release
+      - "v*"
+
 jobs:
-  build:
-    name: Upload Release Assets
+  release:
+    name: Create release with assets
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          node-version: 14.x
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - uses: actions/cache@v2
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          node-version: "14"
+          cache: "yarn"
       - run: yarn install
       - run: yarn build
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
+      - run: echo "${{ github.ref }}" | sed "s/refs\/tags\//release_name=Release /" >> $GITHUB_ENV
+      - uses: softprops/action-gh-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-      - name: Upload Linux Release
-        id: upload-release-asset-linux
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./build/reliure-linux
-          asset_name: reliure-linux
-          asset_content_type: application/octet-stream
-      - name: Upload MacOS Release
-        id: upload-release-asset-macos
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./build/reliure-macos
-          asset_name: reliure-macos
-          asset_content_type: application/octet-stream
-      - name: Upload Windows Release
-        id: upload-release-asset-windows
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./build/reliure-win.exe
-          asset_name: reliure-win.exe
-          asset_content_type: application/octet-stream
+          name: ${{ env.release_name }}
+          files: |
+            ./build/reliure-linux
+            ./build/reliure-macos
+            ./build/reliure-win.exe
