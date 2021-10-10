@@ -35,6 +35,7 @@
     "kindlegen",
     "pandoc"
   ],
+  "type": "module",
   "main": "index.js",
   "bin": {
     "reliure": "index.js"
@@ -71,8 +72,12 @@
   "devDependencies": {
     "download-github-release": "^0.3.2",
     "eslint": "^7.32.0",
-    "eslint-plugin-node": "^11.0.0",
-    "npm-run-all": "^4.1.5"
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.3.2"
   },
   "githubReleases": {
     "w3c/epubcheck": "v4.2.6"

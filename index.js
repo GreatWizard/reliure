@@ -1,70 +1,59 @@
 #!/usr/bin/env node
+import clear from 'clear'
 
-const clear = require("clear")
-
-const build = require("./lib/build")
-const getFormats = require("./lib/get-formats")
-const { installKindlegen } = require("./lib/kindlegen")
-const mergeConfig = require("./lib/merge-config")
-const { printTitle, info, success, error } = require("./lib/message")
-const { getOptions, printVersion, printHelp } = require("./lib/options")
-const readConfig = require("./lib/read-config")
-
-const { log, trace } = console
-const { exit } = process
+import build from './lib/build.js'
+import getFormats from './lib/get-formats.js'
+import { installKindlegen } from './lib/kindlegen.js'
+import mergeConfig from './lib/merge-config.js'
+import { printTitle, info, success, error } from './lib/message.js'
+import { getOptions, printVersion, printHelp } from './lib/options.js'
+import readConfig from './lib/read-config.js'
 
 const settings = { kindlegen: false }
 
-;(async () => {
-  let options = getOptions()
+let options = getOptions()
 
-  if (options.help) {
-    printHelp()
-    return
-  }
+if (options.help) {
+  printHelp()
+  process.exit()
+}
 
-  if (options.version) {
-    printVersion()
-    return
-  }
+if (options.version) {
+  printVersion()
+  process.exit()
+}
 
-  clear()
-  printTitle()
+clear()
+printTitle()
 
-  try {
-    settings.kindlegen = await installKindlegen(options.mobi)
-  } catch (e) {
-    settings.kindlegen = false
-  }
+try {
+  settings.kindlegen = await installKindlegen(options.mobi)
+} catch (e) {
+  settings.kindlegen = false
+}
 
-  let config = await readConfig()
-  info(`Book detected: "${config.filename}"`)
+let config = await readConfig()
+info(`Book detected: "${config.filename}"`)
 
-  let { formats } = await getFormats(settings, options)
+let { formats } = await getFormats(settings, options)
 
-  let builds = []
-  for (let format of formats) {
-    let currentConfig = mergeConfig(config, format)
-    builds.push(
-      new Promise(function(resolve, reject) {
-        return build(currentConfig)
-          .then(() => {
-            success(`Bounded "${format}" file`)
-            resolve()
-          })
-          .catch(e => {
-            error(`Error with the format "${format}"`)
-            reject(e)
-          })
-      })
-    )
-  }
+let builds = []
+for (let format of formats) {
+  let currentConfig = mergeConfig(config, format)
+  builds.push(
+    new Promise(function (resolve, reject) {
+      return build(currentConfig)
+        .then(() => {
+          success(`Bounded "${format}" file`)
+          resolve()
+        })
+        .catch((e) => {
+          error(`Error with the format "${format}"`)
+          reject(e)
+        })
+    }),
+  )
+}
 
-  await Promise.all(builds)
-  log("✨ Done.")
-})
-  .call(this)
-  .catch(e => {
-    trace(e)
-    exit(1)
-  })
+await Promise.all(builds)
+console.log('✨ Done.')
