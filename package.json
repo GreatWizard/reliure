@@ -44,10 +44,10 @@
     "lint:fix": "eslint . --fix",
     "pretest": "node scripts/github-releases.js",
     "test": "npm-run-all test:*",
-    "test:docx-one-file": "cd tests/docx-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/docx-one-file/*.epub",
-    "test:latex-one-file": "cd tests/latex-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
-    "test:markdown-one-file": "cd tests/markdown-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
-    "test:odt-one-file": "cd tests/odt-one-file && ./../../index.js --epub --mobi --pdf && cd ../.. && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/odt-one-file/*.epub",
+    "test:docx-one-file": "./index.js --epub --mobi --pdf tests/docx-one-file && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/docx-one-file/*.epub",
+    "test:latex-one-file": "./index.js --epub --mobi --pdf tests/latex-one-file && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
+    "test:markdown-one-file": "./index.js --epub --mobi --pdf tests/markdown-one-file && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
+    "test:odt-one-file": "./index.js --epub --mobi --pdf tests/odt-one-file && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/odt-one-file/*.epub",
     "build": "pkg . --out-path=build"
   },
   "dependencies": {

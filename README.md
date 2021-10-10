@@ -118,7 +118,7 @@ pdf:
 
 ### Commands
 
-Usage: `reliure [options]`
+Usage: `reliure [options] [<configuration file/directory>]`
 
 #### Options:
 
