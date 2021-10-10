@@ -1,17 +1,13 @@
 #!/usr/bin/env node
+const clear = require('clear')
 
-const clear = require("clear")
-
-const build = require("./lib/build")
-const getFormats = require("./lib/get-formats")
-const { installKindlegen } = require("./lib/kindlegen")
-const mergeConfig = require("./lib/merge-config")
-const { printTitle, info, success, error } = require("./lib/message")
-const { getOptions, printVersion, printHelp } = require("./lib/options")
-const readConfig = require("./lib/read-config")
-
-const { log, trace } = console
-const { exit } = process
+const build = require('./lib/build')
+const getFormats = require('./lib/get-formats')
+const { installKindlegen } = require('./lib/kindlegen')
+const mergeConfig = require('./lib/merge-config')
+const { printTitle, info, success, error } = require('./lib/message')
+const { getOptions, printVersion, printHelp } = require('./lib/options')
+const readConfig = require('./lib/read-config')
 
 const settings = { kindlegen: false }
 
@@ -46,25 +42,26 @@ const settings = { kindlegen: false }
   for (let format of formats) {
     let currentConfig = mergeConfig(config, format)
     builds.push(
-      new Promise(function(resolve, reject) {
+      new Promise(function (resolve, reject) {
         return build(currentConfig)
           .then(() => {
             success(`Bounded "${format}" file`)
             resolve()
           })
-          .catch(e => {
+          .catch((e) => {
             error(`Error with the format "${format}"`)
             reject(e)
           })
-      })
+      }),
     )
   }
 
   await Promise.all(builds)
-  log("✨ Done.")
+  console.log('✨ Done.')
 })
   .call(this)
-  .catch(e => {
-    trace(e)
-    exit(1)
+  .catch((e) => {
+    console.trace(e)
+    // eslint-disable-next-line no-process-exit
+    process.exit(1)
   })
