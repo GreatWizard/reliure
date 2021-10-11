@@ -10,9 +10,10 @@ Bind your books for e-readers.
 
 ## Features
 
-- Compiles Word docx, ODT, Markdown, LaTeX... files in epub, mobi and pdf
+- Compiles Microsoft Word DOCX, LibreOffice ODT, Markdown, LaTeX... files in epub, mobi and pdf
 - Cross-platform compatibility (Windows, Mac and Linux)
 - Configuration in a single file
+- Validate the configuration before creating the books
 - Replaces part of the configuration for a specific format
 - Supports cover image
 - Supports metadata
@@ -54,9 +55,9 @@ filename: My Ebook
 default:
   # Cover image of the ebook
   coverImage: cover.jpg
-  # Deactivate the default CSS (off by default)
-  ignoreDefaultStyleSheet: on/off
-  # Custom Style sheets appends to the default stylesheet
+  # Deactivate the default CSS (false by default) used by epub/mobi format
+  ignoreDefaultStyleSheet: true/false
+  # Custom Style sheets appends to the default stylesheet used by epub/mobi format
   styleSheets:
     - style.css
   # Files used to build the ebook (works with only one file currently)
@@ -75,17 +76,17 @@ default:
     'calibre:series': My Collection
     'calibre:series_index': 1
 
-  # Example of substitutions for chapters, cover and title page files
+  # Example of substitutions for chapters, cover and title page files used by epub/mobi format
   textSubstitutions:
     - regex: <p>\*{3}</p>
       replacement: <p class="center">***</p>
 
-  # Example of substitutions for navigation file
+  # Example of substitutions for navigation file used by epub/mobi format
   navSubstitutions:
     - regex: <!DOCTYPE html>
       replacement: <!DOCTYPE html2>
 
-  # Example of substitutions for the OPF file
+  # Example of substitutions for the OPF file used by epub/mobi format
   opfSubstitutions:
     - regex: <dc:language>fr-FR</dc:language>
       replacement: <dc:language>fr-BE</dc:language>
@@ -106,12 +107,12 @@ mobi:
 # Overridden configuration for pdf format
 pdf:
   coverImage: ../cover-pdf.jpg
-  # fourth cover option is only used by pdf
+  # fourth cover option is only used by pdf format
   fourthCoverImage: ../fourth-cover-pdf.jpg
   metadata:
     identifier: 'urn:isbn:1234567890167'
     rights: 'ISBN: 123-4-5678901-6-7'
-  # latex packages option is only used by pdf
+  # latex packages option is only used by pdf format
   latexPackages:
     - '[frenchb]{babel}'
 ```

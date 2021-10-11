@@ -9,7 +9,7 @@ const { installKindlegen } = require('./lib/kindlegen')
 const mergeConfig = require('./lib/merge-config')
 const { printTitle, info, success, error } = require('./lib/message')
 const { getOptions, printVersion, printHelp } = require('./lib/options')
-const { readConfig, findConfig } = require('./lib/read-config')
+const { findConfig, readConfig, validateConfig } = require('./lib/read-config')
 
 const settings = { kindlegen: false }
 
@@ -37,6 +37,7 @@ const settings = { kindlegen: false }
 
   let configFile = await findConfig(options.config)
   let config = await readConfig(configFile)
+  await validateConfig(config)
   let cwd = await path.dirname(configFile)
   info(`Book detected: "${config.filename}"`)
 

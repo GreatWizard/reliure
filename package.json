@@ -48,6 +48,7 @@
     "test:latex-one-file": "./index.js --epub --mobi --pdf tests/latex-one-file && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
     "test:markdown-one-file": "./index.js --epub --mobi --pdf tests/markdown-one-file && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
     "test:odt-one-file": "./index.js --epub --mobi --pdf tests/odt-one-file && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/odt-one-file/*.epub",
+    "test:metadata": "./index.js --epub tests/metadata && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/metadata/*.epub",
     "build": "pkg . --out-path=build"
   },
   "dependencies": {
@@ -58,6 +59,7 @@
     "cli-progress": "^3.9.1",
     "figlet": "^1.5.2",
     "inquirer": "^8.2.0",
+    "joi": "^17.4.2",
     "js-yaml": "^4.1.0",
     "lodash.merge": "^4.6.2",
     "minimist": "^1.2.5",
