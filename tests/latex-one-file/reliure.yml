@@ -14,8 +14,8 @@ default:
     lang: fr-FR
 
   extraMetadata:
-    "calibre:series": My Collection
-    "calibre:series_index": 1
+    'calibre:series': My Collection
+    'calibre:series_index': 1
 
   textSubstitutions:
     - regex: <p>\*{3}</p>
@@ -23,17 +23,17 @@ default:
 
 epub:
   metadata:
-    identifier: "urn:isbn:1234567890123"
-    rights: "ISBN: 123-4-5678901-2-3"
+    identifier: 'urn:isbn:1234567890123'
+    rights: 'ISBN: 123-4-5678901-2-3'
 
 mobi:
   metadata:
-    identifier: "urn:isbn:1234567890145"
-    rights: "ISBN: 123-4-5678901-4-5"
+    identifier: 'urn:isbn:1234567890145'
+    rights: 'ISBN: 123-4-5678901-4-5'
 
 pdf:
   coverImage: ../cover-a4.jpg
   fourthCoverImage: ../fourth-cover-a4.jpg
   metadata:
-    identifier: "urn:isbn:1234567890167"
-    rights: "ISBN: 123-4-5678901-6-7"
+    identifier: 'urn:isbn:1234567890167'
+    rights: 'ISBN: 123-4-5678901-6-7'

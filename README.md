@@ -72,8 +72,8 @@ default:
 
   # Extra metadata
   extraMetadata:
-    "calibre:series": My Collection
-    "calibre:series_index": 1
+    'calibre:series': My Collection
+    'calibre:series_index': 1
 
   # Example of substitutions for chapters, cover and title page files
   textSubstitutions:
@@ -93,15 +93,15 @@ default:
 # Overridden configuration for epub format
 epub:
   metadata:
-    identifier: "urn:isbn:1234567890123"
-    rights: "ISBN: 123-4-5678901-2-3"
+    identifier: 'urn:isbn:1234567890123'
+    rights: 'ISBN: 123-4-5678901-2-3'
 
 # Overridden configuration for mobi format
 mobi:
   coverImage: cover-mobi.jpg
   metadata:
-    identifier: "urn:isbn:1234567890145"
-    rights: "ISBN: 123-4-5678901-4-5"
+    identifier: 'urn:isbn:1234567890145'
+    rights: 'ISBN: 123-4-5678901-4-5'
 
 # Overridden configuration for pdf format
 pdf:
@@ -109,16 +109,16 @@ pdf:
   # fourth cover option is only used by pdf
   fourthCoverImage: ../fourth-cover-pdf.jpg
   metadata:
-    identifier: "urn:isbn:1234567890167"
-    rights: "ISBN: 123-4-5678901-6-7"
+    identifier: 'urn:isbn:1234567890167'
+    rights: 'ISBN: 123-4-5678901-6-7'
   # latex packages option is only used by pdf
   latexPackages:
-    - "[frenchb]{babel}"
+    - '[frenchb]{babel}'
 ```
 
 ### Commands
 
-Usage: `reliure [options] [<configuration file/directory>]`
+Usage: `reliure [options] [configuration file/directory]`
 
 #### Options:
 
@@ -131,7 +131,9 @@ Usage: `reliure [options] [<configuration file/directory>]`
 #### Examples:
 
 ```shell
-reliure --epub --mobi --pdf
+reliure --epub --mobi
+reliure --epub --pdf my-project/
+reliure --epub --pdf my-complex-project/reliure-config.yml
 reliure -v
 reliure --version
 ```
