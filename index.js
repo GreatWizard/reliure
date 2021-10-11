@@ -67,7 +67,12 @@ const settings = { kindlegen: false }
 })
   .call(this)
   .catch((e) => {
-    console.log(chalk.red(`❌ ${e.message}`))
+    if (e.message) {
+      console.log(chalk.red(`❌ ${e.message}`))
+    } else {
+      console.log(chalk.red(`❌ We are sorry, but an error has occurred.`))
+      console.trace(e)
+    }
     printHelp()
     // eslint-disable-next-line no-process-exit
     process.exit(1)
