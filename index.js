@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 const clear = require('clear')
+const path = require('path')
+const chalk = require('chalk')
 
 const build = require('./lib/build')
 const getFormats = require('./lib/get-formats')
@@ -7,7 +9,7 @@ const { installKindlegen } = require('./lib/kindlegen')
 const mergeConfig = require('./lib/merge-config')
 const { printTitle, info, success, error } = require('./lib/message')
 const { getOptions, printVersion, printHelp } = require('./lib/options')
-const readConfig = require('./lib/read-config')
+const { readConfig, findConfig } = require('./lib/read-config')
 
 const settings = { kindlegen: false }
 
@@ -33,7 +35,9 @@ const settings = { kindlegen: false }
     settings.kindlegen = false
   }
 
-  let config = await readConfig()
+  let configFile = await findConfig(options.config)
+  let config = await readConfig(configFile)
+  let cwd = await path.dirname(configFile)
   info(`Book detected: "${config.filename}"`)
 
   let { formats } = await getFormats(settings, options)
@@ -43,7 +47,9 @@ const settings = { kindlegen: false }
     let currentConfig = mergeConfig(config, format)
     builds.push(
       new Promise(function (resolve, reject) {
-        return build(currentConfig)
+        return build(currentConfig, {
+          cwd,
+        })
           .then(() => {
             success(`Bounded "${format}" file`)
             resolve()
@@ -61,7 +67,8 @@ const settings = { kindlegen: false }
 })
   .call(this)
   .catch((e) => {
-    console.trace(e)
+    console.log(chalk.red(`❌ ${e.message}`))
+    printHelp()
     // eslint-disable-next-line no-process-exit
     process.exit(1)
   })

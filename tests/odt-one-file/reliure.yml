@@ -8,7 +8,7 @@ default:
     - ebook.tex
 
   metadata:
-    title: Test - Markdown - Markdown in one file
+    title: Test - LibreOffice - LibreOffice in one file
     author: Guillaume Gérard
     date: 2020-11
     lang: fr-FR
