@@ -8,8 +8,8 @@ default:
     - ebook.tex
 
   metadata:
-    title: Test - Markdown
-    subtitle: Markdown in one file
+    title: Test - LaTeX
+    subtitle: With one file
     author: Guillaume Gérard
     date: 2020-11
     lang: fr-FR

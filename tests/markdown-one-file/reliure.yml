@@ -9,7 +9,7 @@ default:
 
   metadata:
     title: Test - Markdown
-    subtitle: Markdown in one file
+    subtitle: With one file
     author: Guillaume Gérard
     date: 2020-11
     lang: fr-FR
