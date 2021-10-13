@@ -1,0 +1,46 @@
+filename: My Ebook
+
+default:
+  coverImage: ../cover.jpg
+  ignoreDefaultStyleSheet: true
+  styleSheets:
+    - ../style.css
+  files:
+    - ../latex-one-file/ebook.tex
+
+  metadata:
+    identifier: 'urn:isbn:1234567890123'
+    title: title
+    subtitle: subtitle
+    author:
+      - author 1
+      - author 2
+    creator:
+      - role: editor
+        text: creator editor 1
+    contributor:
+      - role: crr
+        text: contributor contributor 1
+    date: '2021-10-11'
+    lang: fr-FR
+    subject:
+      - subject 1
+      - subject 2
+    type: type
+    format: format
+    relation: relation
+    rights: 'ISBN: 123-4-5678901-2-3'
+    'belongs-to-collection': My Collection
+    'group-position': 1
+    page-progression-direction: 'ltr'
+    ibooks:
+      version: '1.0.0'
+      specified-fonts: false
+      ipad-orientation-lock: portrait-only
+      iphone-orientation-lock: portrait-only
+      binding: true
+      scroll-axis: horizontal
+
+  extraMetadata:
+    'calibre:series': My Calibre Collection
+    'calibre:series_index': 1
