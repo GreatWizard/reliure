@@ -7,7 +7,7 @@ const build = require('./lib/build')
 const getFormats = require('./lib/get-formats')
 const { installKindlegen } = require('./lib/kindlegen')
 const mergeConfig = require('./lib/merge-config')
-const { printTitle, info, success, error } = require('./lib/message')
+const { printTitle, warn, info, success, error } = require('./lib/message')
 const { getOptions, printVersion, printHelp } = require('./lib/options')
 const { findConfig, readConfig, validateConfig } = require('./lib/read-config')
 
@@ -30,8 +30,12 @@ const settings = { kindlegen: false }
   printTitle()
 
   try {
-    settings.kindlegen = await installKindlegen(options.mobi)
+    settings.kindlegen = await installKindlegen({
+      mobi: options.mobi,
+      kindlegenPath: options['kindlegen-path'],
+    })
   } catch (e) {
+    warn(`Kindle format (Mobi) is disabled: ${e.message}`)
     settings.kindlegen = false
   }
 
@@ -50,6 +54,7 @@ const settings = { kindlegen: false }
       new Promise(function (resolve, reject) {
         return build(currentConfig, {
           cwd,
+          kindlegenPath: options['kindlegen-path'],
         })
           .then(() => {
             success(`Bounded "${format}" file`)
