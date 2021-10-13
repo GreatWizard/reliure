@@ -5,11 +5,15 @@ default:
   styleSheets:
     - ../style.css
   files:
-    - ebook.docx
+    - chapter1.md
+    - chapter2.md
+    - chapter3.md
+    - chapter4.md
+    - chapter5.md
 
   metadata:
-    title: Test - Microsoft Office OOXML
-    subtitle: With one file
+    title: Test - Markdown
+    subtitle: With multiple files
     author: Guillaume Gérard
     date: 2020-11
     lang: fr-FR

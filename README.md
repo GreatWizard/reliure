@@ -60,7 +60,7 @@ default:
   # Custom Style sheets appends to the default stylesheet used by epub/mobi format
   styleSheets:
     - style.css
-  # Files used to build the ebook (works with only one file currently)
+  # Files used to build the ebook
   files:
     - my-ebook.docx
 

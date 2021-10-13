@@ -47,7 +47,9 @@
     "test:docx-one-file": "./index.js --epub --mobi --pdf tests/docx-one-file && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/docx-one-file/*.epub",
     "test:latex-one-file": "./index.js --epub --mobi --pdf tests/latex-one-file && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
     "test:markdown-one-file": "./index.js --epub --mobi --pdf tests/markdown-one-file && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-one-file/*.epub",
-    "test:odt-one-file": "./index.js --epub --mobi --pdf tests/odt-one-file && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/odt-one-file/*.epub",
+    "test:odt-one-file": "./index.js --epub --mobi --pdf tests/odt-one-file && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/odt-one-file/*.epub ; echo 'This is fine.'",
+    "test:latex-multi-files": "./index.js --epub --mobi --pdf tests/latex-multi-files && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/latex-multi-files/*.epub",
+    "test:markdown-multi-files": "./index.js --epub --mobi --pdf tests/markdown-multi-files && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/markdown-multi-files/*.epub",
     "test:metadata": "./index.js --epub tests/metadata && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/metadata/*.epub",
     "build": "pkg . --out-path=build"
   },
