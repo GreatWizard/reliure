@@ -126,6 +126,7 @@ Usage: `reliure [options] [configuration file/directory]`
 - `--epub`: specify to bound the epub format
 - `--mobi`: specify to bound the mobi format
 - `--pdf`: specify to bound the pdf format
+- `--kindlegen-path`: specify the kindlegen location
 - `-v`, `--version`: print the version number
 - `-h`, `--help`: print usage information
 
@@ -135,6 +136,7 @@ Usage: `reliure [options] [configuration file/directory]`
 reliure --epub --mobi
 reliure --epub --pdf my-project/
 reliure --epub --pdf my-complex-project/reliure-config.yml
+reliure --mobi --kindlegen-path=/usr/local/bin/kindlegen my-project/reliure.yml
 reliure -v
 reliure --version
 ```
