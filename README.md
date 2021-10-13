@@ -6,7 +6,8 @@
 
 Bind your books for e-readers.
 
-![Screenshot of Reliure running in a terminal](reliure-screenshot.png)
+![Screenshot of Reliure running in a terminal](https://raw.githubusercontent.com/GreatWizard/reliure/master/reliure-screenshot.png)
+
 
 ## Features
 

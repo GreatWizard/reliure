@@ -1,0 +1,16 @@
+/github_releases
+/node_modules
+/package-lock.json
+/yarn.lock
+/npm-debug.log*
+/yarn-debug.log*
+/yarn-error.log*
+/build
+/.eslintcache
+/.editorconfig
+/.eslintrc
+/.github
+/.prettierrc
+/scripts
+/tests
+/reliure-screenshot.png
