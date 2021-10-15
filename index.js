@@ -2,6 +2,7 @@
 const clear = require('clear')
 const path = require('path')
 const chalk = require('chalk')
+const fs = require('fs')
 
 const build = require('./lib/build')
 const getFormats = require('./lib/get-formats')
@@ -10,8 +11,9 @@ const mergeConfig = require('./lib/merge-config')
 const { printTitle, warn, info, success, error } = require('./lib/message')
 const { getOptions, printVersion, printHelp } = require('./lib/options')
 const { findConfig, readConfig, validateConfig } = require('./lib/read-config')
+const { generateFontFilename } = require('./lib/utils')
 
-const settings = { kindlegen: false }
+const settings = { kindlegen: false, pdf: true }
 
 const options = getOptions()
 
@@ -43,6 +45,28 @@ const options = getOptions()
   let config = await readConfig(configFile)
   await validateConfig(config)
   let cwd = await path.dirname(configFile)
+
+  // Check existence of fonts in current directory
+  let pdfConfig = mergeConfig(config, 'pdf')
+  Object.keys(pdfConfig.fonts || []).forEach((type) => {
+    let shapes = Object.keys(pdfConfig.fonts[type].shapes || [])
+    if (!shapes.includes('upright')) {
+      shapes.push('upright')
+    }
+    shapes.forEach((shape) => {
+      let filename = generateFontFilename(pdfConfig.fonts, type, shape)
+      if (!fs.existsSync(filename)) {
+        settings.pdf = false
+      }
+    })
+  })
+
+  if (!settings.pdf) {
+    warn(
+      `PDF format is disabled: Run Reliure directly in the directory that contains configuration file and custom fonts`,
+    )
+  }
+
   info(`Book detected: "${config.filename}"`)
 
   let { formats } = await getFormats(settings, options)
