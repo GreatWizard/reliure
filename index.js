@@ -13,9 +13,9 @@ const { findConfig, readConfig, validateConfig } = require('./lib/read-config')
 
 const settings = { kindlegen: false }
 
-;(async () => {
-  let options = getOptions()
+const options = getOptions()
 
+;(async (options) => {
   if (options.help) {
     printHelp()
     return
@@ -55,6 +55,7 @@ const settings = { kindlegen: false }
         return build(currentConfig, {
           cwd,
           kindlegenPath: options['kindlegen-path'],
+          debug: options.debug,
         })
           .then(() => {
             success(`Bounded "${format}" file`)
@@ -71,7 +72,7 @@ const settings = { kindlegen: false }
   await Promise.all(builds)
   console.log('✨ Done.')
 })
-  .call(this)
+  .call(this, options)
   .catch((e) => {
     if (e.message) {
       console.log(chalk.red(`❌ ${e.message}`))
@@ -79,7 +80,11 @@ const settings = { kindlegen: false }
       console.log(chalk.red(`❌ We are sorry, but an error has occurred.`))
       console.trace(e)
     }
-    printHelp()
+    if (options.debug) {
+      console.trace(e)
+    } else {
+      printHelp()
+    }
     // eslint-disable-next-line no-process-exit
     process.exit(1)
   })
