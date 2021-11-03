@@ -1,0 +1,7 @@
+filename: My Ebook
+
+default:
+  files:
+    - ../latex-one-file/ebook.tex
+  metadata:
+    title: Minimal config
