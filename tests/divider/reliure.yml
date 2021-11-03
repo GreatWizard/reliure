@@ -1,0 +1,18 @@
+filename: My Ebook
+
+default:
+  styleSheets:
+    - ../center.css
+  files:
+    - ebook.tex
+  metadata:
+    title: Divider demo
+  textSubstitutions:
+    # - regex: <p><img src="../media/file0.png" alt="image" /></p>
+    #   replacement: <p class="center"><img src="../media/file0.png" alt="***" /></p>
+    - regex: <p><img src="../media/file0.svg" alt="image" /></p>
+      replacement: <p class="center"><img src="../media/file0.svg" alt="***" /></p>
+
+pdf:
+  files:
+    - pdf.tex
