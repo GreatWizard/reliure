@@ -70,7 +70,6 @@
     "lodash.merge": "^4.6.2",
     "minimist": "^1.2.5",
     "node-fetch": "^2.6.5",
-    "node-pandoc-promise": "^0.0.6",
     "pkg": "^5.3.3",
     "replace": "^1.2.1",
     "tar": "^6.1.11",
