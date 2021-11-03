@@ -52,6 +52,7 @@
     "test:markdown-multi-files": "./index.js --debug --epub --mobi --pdf tests/markdown-multi-files && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/markdown-multi-files/*.epub",
     "test:metadata": "./index.js --debug --epub tests/metadata && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/metadata/*.epub",
     "test:minimal": "./index.js --debug --epub tests/minimal && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/minimal/*.epub",
+    "test:toc": "./index.js --debug --epub --pdf tests/toc && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar tests/toc/*.epub",
     "build": "pkg . --out-path=build"
   },
   "dependencies": {

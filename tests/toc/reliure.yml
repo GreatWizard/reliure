@@ -1,0 +1,20 @@
+filename: My Ebook
+
+default:
+  styleSheets:
+    - ../center.css
+  files:
+    - ebook.tex
+
+  metadata:
+    title: Test - ToC
+    author: Guillaume Gérard
+    date: 2021-11
+    lang: fr-FR
+
+pdf:
+  coverImage: ../cover-a4.jpg
+  fourthCoverImage: ../fourth-cover-a4.jpg
+  metadata:
+    identifier: 'urn:isbn:1234567890167'
+    rights: 'ISBN: 123-4-5678901-6-7'
