@@ -61,6 +61,11 @@ export default async function (config, options = {}) {
       throw new Error(`File "${filename}" doesn't exists.`)
     }
   })
+  ;(config.includeInHeader || []).forEach((filename) => {
+    if (!fs.existsSync(path.join(cwd, filename))) {
+      throw new Error(`File "${filename}" doesn't exists.`)
+    }
+  })
   ;[config.coverImage, config.fourthCoverImage].filter(Boolean).forEach((filename) => {
     if (!fs.existsSync(path.join(cwd, filename))) {
       throw new Error(`File "${filename}" doesn't exists.`)
@@ -135,6 +140,10 @@ export default async function (config, options = {}) {
 
     // add nice chapter split for pdf
     let headerContent = latexHeader(config.latexPackages, config.fonts)
+    // add headers file
+    ;(config.includeInHeader || []).forEach((filename) => {
+      headerContent += fs.readFileSync(path.join(cwd, filename), 'utf8')
+    })
     let headerFile = path.join(tempPath, 'header.tex')
     fs.writeFileSync(headerFile, headerContent, 'utf8')
     args.push('--include-in-header', headerFile)

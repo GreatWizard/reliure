@@ -1,0 +1,15 @@
+\documentclass{book}
+\newcommand{\parbr}{%
+  \par
+  \leavevmode \\
+  \par}
+\newcommand{\divider}{%
+  \parbr
+  \begin{center}
+    \def\svgwidth{0.3\textwidth}
+    \input{divider.pdf_tex}
+  \end{center}
+  \parbr}
+\begin{document}
+\include{chapters.tex}
+\end{document}
