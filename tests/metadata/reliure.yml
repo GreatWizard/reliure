@@ -2,9 +2,8 @@ filename: My Ebook
 
 default:
   coverImage: ../cover.jpg
-  ignoreDefaultStyleSheet: true
   styleSheets:
-    - ../style.css
+    - ../center.css
   files:
     - ../latex-one-file/ebook.tex
 

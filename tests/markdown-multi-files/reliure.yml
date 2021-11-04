@@ -3,7 +3,7 @@ filename: My Ebook
 default:
   coverImage: ../cover.jpg
   styleSheets:
-    - ../style.css
+    - ../center.css
   files:
     - chapter1.md
     - chapter2.md
