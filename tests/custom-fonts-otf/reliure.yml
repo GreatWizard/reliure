@@ -1,0 +1,44 @@
+filename: My Ebook
+
+default:
+  coverImage: ../cover.jpg
+  styleSheets:
+    - ../center.css
+  fonts:
+    main:
+      name: EB Garamond
+      baseFilename: EBGaramond
+      extension: .otf
+      shapes:
+        upright: '*-Regular'
+        italic: '*-Italic'
+  files:
+    - ../latex-one-file/ebook.tex
+
+  metadata:
+    title: Test - Custom font OTF
+    subtitle: EB Garamond
+    author: Guillaume Gérard
+    date: 2021-10
+    lang: fr-FR
+
+  textSubstitutions:
+    - regex: <p>\*{3}</p>
+      replacement: <p class="center">***</p>
+
+epub:
+  metadata:
+    identifier: 'urn:isbn:1234567890123'
+    rights: 'ISBN: 123-4-5678901-2-3'
+
+mobi:
+  metadata:
+    identifier: 'urn:isbn:1234567890145'
+    rights: 'ISBN: 123-4-5678901-4-5'
+
+pdf:
+  coverImage: ../cover-a4.jpg
+  fourthCoverImage: ../fourth-cover-a4.jpg
+  metadata:
+    identifier: 'urn:isbn:1234567890167'
+    rights: 'ISBN: 123-4-5678901-6-7'

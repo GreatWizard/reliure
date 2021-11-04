@@ -16,6 +16,7 @@ Bind your books for e-readers.
 - Configuration in a single file
 - Validate the configuration before creating the books
 - Replaces part of the configuration for a specific format
+- Supports custom fonts (ttf and otf)
 - Supports cover image
 - Supports metadata
 
@@ -61,6 +62,16 @@ default:
   # Custom Style sheets appends to the default stylesheet used by epub/mobi format
   styleSheets:
     - style.css
+  # Custom fonts configuration, files must be in the same directory
+  fonts:
+    main:
+      name: EB Garamond # Used to define the font name
+      baseFilename: EBGaramond # Used to find the files
+      extension: .otf # Supported format are ttf and otf
+      # Files are defined by shapes. It work like a "mask", "*" is replaced by the base filename of the font
+      shapes:
+        upright: '*-Regular' # EBGaramond-Regular.otf
+        italic: '*-Italic' # EBGaramond-Italic.otf
   # Files used to build the ebook
   files:
     - my-ebook.docx
