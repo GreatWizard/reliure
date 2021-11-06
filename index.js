@@ -4,13 +4,13 @@ const path = require('path')
 
 const build = require('./lib/build')
 const getFormats = require('./lib/get-formats')
-const { installKindlegen } = require('./lib/kindlegen')
+const { detectOrInstallKindlegen } = require('./lib/kindlegen')
 const mergeConfig = require('./lib/merge-config')
 const { printTitle, warn, info, success, error } = require('./lib/message')
 const { getOptions, printVersion, printHelp } = require('./lib/options')
 const { findConfig, readConfig, validateConfig } = require('./lib/read-config')
 
-const settings = { kindlegen: false, pdf: true }
+const settings = { kindlegenPath: undefined }
 
 const options = getOptions()
 
@@ -29,13 +29,13 @@ const options = getOptions()
   printTitle()
 
   try {
-    settings.kindlegen = await installKindlegen({
+    settings.kindlegenPath = await detectOrInstallKindlegen({
       mobi: options.mobi,
       kindlegenPath: options['kindlegen-path'],
     })
   } catch (e) {
     warn(`Kindle format (Mobi) is disabled: ${e.message}`)
-    settings.kindlegen = false
+    settings.kindlegenPath = undefined
   }
 
   let configFile = await findConfig(options.config)
@@ -54,7 +54,7 @@ const options = getOptions()
       new Promise(function (resolve, reject) {
         return build(currentConfig, {
           cwd,
-          kindlegenPath: options['kindlegen-path'],
+          kindlegenPath: settings.kindlegenPath,
           debug: options.debug,
         })
           .then(() => {
