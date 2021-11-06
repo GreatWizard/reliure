@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 const clear = require('clear')
 const path = require('path')
-const chalk = require('chalk')
 
 const build = require('./lib/build')
 const getFormats = require('./lib/get-formats')
@@ -76,9 +75,9 @@ const options = getOptions()
   .call(this, options)
   .catch((e) => {
     if (e.message) {
-      console.log(chalk.red(`❌ ${e.message}`))
+      error(`${e.message}`, '❌')
     } else {
-      console.log(chalk.red(`❌ We are sorry, but an error has occurred.`))
+      error(`We are sorry, but an error has occurred.`, '❌')
       console.trace(e)
     }
     if (options.debug) {
