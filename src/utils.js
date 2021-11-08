@@ -45,8 +45,4 @@ module.exports.humanizePlatformArch = (platform, arch) => {
   }
 }
 
-module.exports.generateFontFilename = (fonts = {}, type = 'main', shape = 'upright') => {
-  let filename = ((fonts[type].shapes || [])[shape] || '*').replace('*', fonts[type].baseFilename)
-  let extension = fonts[type].extension
-  return `${filename}${extension}`
-}
+module.exports.cleanArray = (array = []) => [...new Set(array)].filter(Boolean)

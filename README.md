@@ -125,7 +125,7 @@ pdf:
     rights: 'ISBN: 123-4-5678901-6-7'
   # latex packages option is only used by pdf format
   latexPackages:
-    - '[frenchb]{babel}'
+    - '[french]{babel}'
 ```
 
 ### Commands

@@ -1,0 +1,17 @@
+filename: My Ebook
+
+default:
+  styleSheets:
+    - ../center.css
+  files:
+    - ../latex-one-file/ebook.tex
+
+  metadata:
+    title: Test - French
+    author: Guillaume Gérard
+    date: 2020-11
+    lang: fr-FR
+
+  textSubstitutions:
+    - regex: <p>\*{3}</p>
+      replacement: <p class="center">***</p>

@@ -21,7 +21,7 @@ default:
       - role: crr
         text: contributor contributor 1
     date: '2021-10-11'
-    lang: fr-FR
+    lang: en-US
     subject:
       - subject 1
       - subject 2

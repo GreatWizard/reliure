@@ -7,8 +7,9 @@ const yaml = require('js-yaml')
 const nodePandoc = require('./node-pandoc-promise')
 
 const { latexHeader, latexNumber, latexImage, latexTOC, latexTitle, latexNewPage } = require('./helpers/latex')
-const { defaultStylesheet, generateFontsStylesheet } = require('./helpers/stylesheet')
-const { parseBool, generateFontFilename } = require('./utils')
+const { defaultStylesheet, generateFontsStylesheet, getLanguageStylesheet } = require('./helpers/stylesheet')
+const { generateFontFilename } = require('./helpers/fonts')
+const { parseBool } = require('./utils')
 const { epubToMobi } = require('./kindlegen')
 const {
   extract,
@@ -95,6 +96,7 @@ module.exports = async (config, options = {}) => {
     ;(config.styleSheets || []).forEach((filename) => {
       cssContent += fs.readFileSync(path.join(cwd, filename), 'utf8')
     })
+    cssContent += getLanguageStylesheet(config.metadata.lang)
     cssContent += generateFontsStylesheet(config.fonts)
     cssContent = new CleanCSS({
       level: {
@@ -119,6 +121,11 @@ module.exports = async (config, options = {}) => {
   }
 
   if (config.format === 'pdf') {
+    if (config.metadata.lang) {
+      // Pass the lang option to the template
+      args.push('-V', `lang=${config.metadata.lang.split('-')[0]}`)
+    }
+
     // use pdf engine
     args.push('--pdf-engine=xelatex')
 
