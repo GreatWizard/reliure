@@ -16,7 +16,6 @@ default:
     subtitle: With multiple files
     author: Guillaume Gérard
     date: 2020-11
-    lang: fr-FR
 
   extraMetadata:
     'calibre:series': My Collection
