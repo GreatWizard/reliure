@@ -10,5 +10,8 @@
     "plugin:prettier/recommended",
     "prettier"
   ],
+  "parserOptions": {
+    "ecmaVersion": 13
+  },
   "rules": {}
 }
