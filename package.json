@@ -77,13 +77,13 @@
   },
   "devDependencies": {
     "download-github-release": "^0.3.2",
-    "eslint": "^8.2.0",
+    "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.3.2"
+    "prettier": "^2.5.1"
   },
   "githubReleases": {
     "w3c/epubcheck": "v4.2.6"
