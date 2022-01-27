@@ -135,12 +135,13 @@ Usage: `reliure [options] [configuration file/directory]`
 
 #### Options:
 
-- `--epub`: specify to bound the epub format
-- `--mobi`: specify to bound the mobi format
-- `--pdf`: specify to bound the pdf format
-- `--kindlegen-path`: specify the kindlegen location
-- `-v`, `--version`: print the version number
-- `-h`, `--help`: print usage information
+- `-c`, `--config`: The configuration file/directory to process
+- `--epub`: Specify to bound the epub format
+- `--mobi`: Specify to bound the mobi format
+- `--pdf`: Specify to bound the pdf format
+- `--kindlegen-path`: Specify the kindlegen location
+- `-v`, `--version`: Print the version number
+- `-h`, `--help`: Print usage information
 
 #### Examples:
 
