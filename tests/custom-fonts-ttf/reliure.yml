@@ -19,7 +19,6 @@ default:
     subtitle: Literata
     author: Guillaume Gérard
     date: 2021-10
-    lang: fr-FR
 
   textSubstitutions:
     - regex: <p>\*{3}</p>
