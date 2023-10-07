@@ -10,13 +10,16 @@ jobs:
     name: Create release with assets
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v3
         with:
           node-version: "16"
-          cache: "yarn"
-      - run: yarn install
-      - run: yarn build
+          cache: "pnpm"
+      - run: pnpm install
+      - run: pnpm build
       - run: echo "${{ github.ref }}" | sed "s/refs\/tags\//release_name=Release /" >> $GITHUB_ENV
       - uses: softprops/action-gh-release@v1
         env:
