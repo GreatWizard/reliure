@@ -36,9 +36,7 @@
     "pandoc"
   ],
   "main": "index.js",
-  "bin": {
-    "reliure": "index.js"
-  },
+  "bin": "index.js",
   "scripts": {
     "lint": "eslint . --cache",
     "lint:fix": "eslint . --fix",
@@ -71,7 +69,7 @@
     "js-yaml": "^4.1.0",
     "lodash.merge": "^4.6.2",
     "node-fetch": "^2.6.6",
-    "pkg": "^5.3.3",
+    "pkg": "^5.8.1",
     "replace": "^1.2.1",
     "tar": "^6.1.11",
     "unzipper": "^0.10.10"
@@ -87,16 +85,16 @@
     "prettier": "^2.5.1"
   },
   "githubReleases": {
-    "w3c/epubcheck": "v4.2.6"
+    "w3c/epubcheck": "v5.1.0"
   },
   "engines": {
     "node": ">=10.0.0"
   },
   "pkg": {
     "targets": [
-      "node16-linux-x64",
-      "node16-macos-x64",
-      "node16-win-x64"
+      "node18-linux-x64",
+      "node18-macos-x64",
+      "node18-win-x64"
     ],
     "assets": [
       "./node_modules/figlet/fonts/Standard.flf"
