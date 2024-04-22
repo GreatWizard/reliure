@@ -8,7 +8,7 @@ const { spawn } = require('child_process')
 const tar = require('tar')
 const unzipper = require('unzipper')
 
-const { warn } = require('./message')
+const { log, warn } = require('./message')
 const { humanizePlatformArch } = require('./utils')
 
 const kindlegenFilename = () => (process.platform === 'win32' ? 'kindlegen.exe' : 'kindlegen')
@@ -136,7 +136,7 @@ module.exports.detectOrInstallKindlegen = async (options = {}) => {
           )}.`,
         )
       }
-      console.log(`KindleGen is a tool to convert files to the Kindle format (Mobi) enabling publishers to create great-looking books that work on all Kindle devices and apps.
+      log(`KindleGen is a tool to convert files to the Kindle format (Mobi) enabling publishers to create great-looking books that work on all Kindle devices and apps.
 KindleGen is officially supported by Amazon.
 To install KindleGen, you must accept the following terms of use: https://www.amazon.com/gp/feature.html?docId=1000599251`)
       let install = options.mobi
@@ -151,15 +151,15 @@ To install KindleGen, you must accept the following terms of use: https://www.am
         install = startInstall
       }
       if (install) {
-        console.log('* Download KindleGen')
+        log('* Download KindleGen')
         let file = await downloadKindleGen(binUrl)
-        console.log('* Extract KindleGen in the current directory')
+        log('* Extract KindleGen in the current directory')
         await extractKindleGen(file)
         if (process.platform === 'darwin' || process.platform === 'linux') {
           fs.chmodSync(kindlegenPath, 0o755)
         }
       }
-      console.log()
+      log()
       return install ? kindlegenPath : undefined
     }
   }
