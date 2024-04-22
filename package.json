@@ -87,7 +87,7 @@
     "prettier": "^2.5.1"
   },
   "githubReleases": {
-    "w3c/epubcheck": "v4.2.6"
+    "w3c/epubcheck": "v5.1.0"
   },
   "engines": {
     "node": ">=10.0.0"
