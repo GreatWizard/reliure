@@ -6,12 +6,12 @@ const path = require('path')
 const packageJson = require('../package.json')
 
 const releases = packageJson.githubReleases || {}
-const outputdir = 'github_releases'
+const outputDir = 'github_releases'
 
 Object.keys(releases).forEach((project) => {
   let [user, repo] = project.split('/')
   let version = releases[project]
-  let dir = path.join(process.cwd(), outputdir, user, repo)
+  let dir = path.join(process.cwd(), outputDir, user, repo)
   let alreadyInstalledVersion = undefined
   try {
     alreadyInstalledVersion = fs.readFileSync(path.join(dir, '.github-release-version'), 'utf8')
