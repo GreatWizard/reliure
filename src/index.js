@@ -2,13 +2,13 @@
 const clear = require('clear')
 const path = require('path')
 
-const build = require('./lib/build')
-const getFormats = require('./lib/get-formats')
-const { detectOrInstallKindlegen } = require('./lib/kindlegen')
-const mergeConfig = require('./lib/merge-config')
-const { printTitle, warn, info, success, error } = require('./lib/message')
-const { getOptions, printVersion, printHelp } = require('./lib/options')
-const { findConfig, readConfig, validateConfig } = require('./lib/read-config')
+const build = require('./build')
+const getFormats = require('./get-formats')
+const { detectOrInstallKindlegen } = require('./kindlegen')
+const mergeConfig = require('./merge-config')
+const { printTitle, warn, info, success, error, log } = require('./message')
+const { getOptions, printVersion, printHelp } = require('./options')
+const { findConfig, readConfig, validateConfig } = require('./read-config')
 
 const settings = { kindlegenPath: undefined }
 
@@ -70,7 +70,7 @@ const options = getOptions()
   }
 
   await Promise.all(builds)
-  console.log('✨ Done.')
+  log('✨ Done.')
 })
   .call(this, options)
   .catch((e) => {

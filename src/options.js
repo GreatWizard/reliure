@@ -2,6 +2,7 @@ const chalk = require('chalk')
 const commandLineArgs = require('command-line-args')
 const commandLineUsage = require('command-line-usage')
 
+const { log } = require('./message')
 const { version } = require('../package.json')
 
 const optionList = [
@@ -61,11 +62,11 @@ module.exports.getOptions = () => {
 }
 
 module.exports.printVersion = () => {
-  console.log(`v${version}`)
+  log(`v${version}`)
 }
 
 module.exports.printHelp = () => {
-  console.log(
+  log(
     commandLineUsage([
       {
         header: 'How to use Reliure ⛑️',
