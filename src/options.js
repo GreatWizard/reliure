@@ -21,7 +21,8 @@ const optionList = [
   {
     name: 'mobi',
     type: Boolean,
-    description: 'Specify to bound the mobi format',
+    description:
+      'Specify to bound the mobi format and you accept the following terms of use: https://www.amazon.com/gp/feature.html?docId=1000599251',
   },
   {
     name: 'pdf',
@@ -32,6 +33,11 @@ const optionList = [
     name: 'kindlegen-path',
     type: String,
     description: 'Specify the kindlegen location',
+  },
+  {
+    name: 'non-interactive',
+    type: Boolean,
+    description: 'Does not prompt for any input',
   },
   {
     name: 'version',

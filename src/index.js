@@ -29,10 +29,7 @@ const options = getOptions()
   printTitle()
 
   try {
-    settings.kindlegenPath = await detectOrInstallKindlegen({
-      mobi: options.mobi,
-      kindlegenPath: options['kindlegen-path'],
-    })
+    settings.kindlegenPath = await detectOrInstallKindlegen(options)
   } catch (e) {
     warn(`Kindle format (Mobi) is disabled: ${e.message}`)
     settings.kindlegenPath = undefined

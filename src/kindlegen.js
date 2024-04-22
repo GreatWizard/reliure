@@ -112,7 +112,7 @@ module.exports.epubToMobi = (input, output, options = {}) => {
 }
 
 module.exports.detectOrInstallKindlegen = async (options = {}) => {
-  let { kindlegenPath } = options
+  let kindlegenPath = options['kindlegen-path']
   let binUrl = undefined
   if (process.platform === 'darwin' && process.arch === 'x32') {
     binUrl = 'https://archive.org/download/kindlegen-mac-i386-v2-9/KindleGen_Mac_i386_v2_9.zip'
@@ -136,16 +136,19 @@ module.exports.detectOrInstallKindlegen = async (options = {}) => {
           )}.`,
         )
       }
-      log(`KindleGen is a tool to convert files to the Kindle format (Mobi) enabling publishers to create great-looking books that work on all Kindle devices and apps.
+      let install = options.mobi
+      let interactive = !options['non-interactive']
+      if (install || interactive) {
+        log(`KindleGen is a tool to convert files to the Kindle format (Mobi) enabling publishers to create great-looking books that work on all Kindle devices and apps.
 KindleGen is officially supported by Amazon.
 To install KindleGen, you must accept the following terms of use: https://www.amazon.com/gp/feature.html?docId=1000599251`)
-      let install = options.mobi
-      if (!install) {
+      }
+      if (!install && interactive) {
         let { startInstall } = await inquirer.prompt([
           {
             type: 'confirm',
             name: 'startInstall',
-            message: 'Do you agree to terms of use?',
+            message: 'Do you agree to terms of use',
           },
         ])
         install = startInstall

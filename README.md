@@ -8,7 +8,6 @@ Bind your books for e-readers.
 
 ![Screenshot of Reliure running in a terminal](https://raw.githubusercontent.com/GreatWizard/reliure/master/reliure-screenshot.png)
 
-
 ## Features
 
 - Compiles Microsoft Word DOCX, LibreOffice ODT, Markdown, LaTeX... files in epub, mobi and pdf
@@ -137,9 +136,10 @@ Usage: `reliure [options] [configuration file/directory]`
 
 - `-c`, `--config`: The configuration file/directory to process
 - `--epub`: Specify to bound the epub format
-- `--mobi`: Specify to bound the mobi format
+- `--mobi`: Specify to bound the mobi format and you accept the following terms of use: https://www.amazon.com/gp/feature.html?docId=1000599251
 - `--pdf`: Specify to bound the pdf format
 - `--kindlegen-path`: Specify the kindlegen location
+- `--non-interactive`: Does not prompt for any input
 - `-v`, `--version`: Print the version number
 - `-h`, `--help`: Print usage information
 
