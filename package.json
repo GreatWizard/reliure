@@ -74,7 +74,7 @@
     "js-yaml": "^4.1.0",
     "lodash.merge": "^4.6.2",
     "node-fetch": "^2.6.6",
-    "pkg": "^5.3.3",
+    "pkg": "^5.8.1",
     "replace": "^1.2.1",
     "tar": "^6.1.11",
     "unzipper": "^0.10.10"
@@ -102,9 +102,9 @@
   },
   "pkg": {
     "targets": [
-      "node16-linux-x64",
-      "node16-macos-x64",
-      "node16-win-x64"
+      "node18-linux-x64",
+      "node18-macos-x64",
+      "node18-win-x64"
     ],
     "assets": [
       "./node_modules/figlet/fonts/Standard.flf"
