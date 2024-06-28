@@ -1,14 +1,15 @@
-const defaultPackages = ['{tikz}', '{graphicx}', '{sectsty}']
+const { cleanArray } = require('../utils')
+const { generateFontFilename } = require('./fonts')
 
-const { generateFontFilename } = require('../utils')
+const defaultPackages = ['{tikz}', '{graphicx}', '{sectsty}']
 
 module.exports.latexHeader = (latexPackages = [], fonts = {}) => {
   let header = ''
-  let allPackages = defaultPackages.concat(latexPackages)
+  let allPackages = [...defaultPackages, ...latexPackages]
   if (fonts.main) {
     allPackages.push('{fontspec}')
   }
-  allPackages.forEach((packageName) => {
+  cleanArray(allPackages).forEach((packageName) => {
     header += `\\usepackage${packageName}\n`
   })
   if (fonts.main) {

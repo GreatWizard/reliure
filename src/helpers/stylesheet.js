@@ -1,5 +1,7 @@
 const path = require('path')
-const { generateFontFilename } = require('../utils')
+
+const { generateFontFilename } = require('./fonts')
+const { getLanguageData } = require('./languages')
 
 module.exports.defaultStylesheet = `body {
   margin: 5%;
@@ -79,11 +81,6 @@ div.column {
 div.hanging-indent {
   margin-left: 1.5em;
   text-indent: -1.5em;
-}
-
-section:not(.titlepage) p {
-  margin: 0;
-  text-indent: 1.5em;
 }\n`
 
 module.exports.generateFontsStylesheet = (fonts = {}) => {
@@ -112,4 +109,8 @@ module.exports.generateFontsStylesheet = (fonts = {}) => {
   }
 
   return result
+}
+
+module.exports.getLanguageStylesheet = (lang) => {
+  return `${getLanguageData(lang).css}\n`
 }

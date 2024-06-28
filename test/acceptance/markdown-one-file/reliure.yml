@@ -12,7 +12,7 @@ default:
     subtitle: With one file
     author: Guillaume Gérard
     date: 2020-11
-    lang: fr-FR
+    lang: en-US
 
   extraMetadata:
     'calibre:series': My Collection

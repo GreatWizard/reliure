@@ -43,7 +43,8 @@
     "lint": "eslint . --cache",
     "lint:fix": "eslint . --fix",
     "pretest": "node scripts/github-releases.js",
-    "test": "npm-run-all pretest test:unit test:acceptance",
+    "pretest:acceptance": "find ./test -type f \\( -iname '*.epub' -o -iname '*.mobi' -o -iname '*.pdf' \\) -delete",
+    "test": "npm-run-all pretest test:unit pretest:acceptance test:acceptance",
     "test:acceptance": "npm-run-all test:acceptance:*",
     "test:acceptance:custom-fonts-ttf": "node ./src/index.js --debug --non-interactive --epub --pdf test/acceptance/custom-fonts-ttf && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar test/acceptance/custom-fonts-ttf/*.epub",
     "test:acceptance:custom-fonts-otf": "node ./src/index.js --debug --non-interactive --epub --pdf test/acceptance/custom-fonts-otf && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar test/acceptance/custom-fonts-otf/*.epub",
@@ -56,6 +57,7 @@
     "test:acceptance:metadata": "node ./src/index.js --debug --non-interactive --epub test/acceptance/metadata && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar test/acceptance/metadata/*.epub",
     "test:acceptance:toc": "node ./src/index.js --debug --non-interactive --epub --pdf test/acceptance/toc && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar test/acceptance/toc/*.epub",
     "test:acceptance:mobi": "node ./src/index.js --debug --non-interactive --mobi test/acceptance/latex-multi-files",
+    "test:acceptance:french": "node ./src/index.js --debug --non-interactive --epub --pdf test/acceptance/french && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar test/acceptance/french/*.epub",
     "test:unit": "mocha test/unit/**/*.test.js",
     "build": "pkg . --out-path=build",
     "start": "node ./src/index.js"

@@ -20,7 +20,7 @@ default:
     subtitle: EB Garamond
     author: Guillaume Gérard
     date: 2021-10
-    lang: fr-FR
+    lang: en-US
 
   textSubstitutions:
     - regex: <p>\*{3}</p>

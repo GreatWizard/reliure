@@ -10,7 +10,7 @@ default:
     title: Test - ToC
     author: Guillaume Gérard
     date: 2021-11
-    lang: fr-FR
+    lang: en-US
 
 pdf:
   coverImage: ../cover-a4.jpg
