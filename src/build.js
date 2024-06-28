@@ -87,6 +87,9 @@ module.exports = async (config, options = {}) => {
 
   let args = config.files
 
+  // Suppress warning messages
+  args.push('--quiet')
+
   if (config.format === 'epub' || config.format === 'mobi') {
     // add stylesheet
     let cssContent = ''
@@ -179,7 +182,7 @@ module.exports = async (config, options = {}) => {
   args.push('-o', outputFile)
 
   // compile with pandoc
-  await nodePandoc('', args, { cwd })
+  await nodePandoc('', args, { cwd }, undefined, { debug: options.debug })
 
   if (config.format === 'epub' || config.format === 'mobi') {
     // Automatically edit epub: apply substitutions, append extra metadata
