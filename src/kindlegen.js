@@ -8,7 +8,7 @@ const { spawn } = require('child_process')
 const tar = require('tar')
 const unzipper = require('unzipper')
 
-const { log, warn } = require('./message')
+const { debug, log, warn } = require('./message')
 const { humanizePlatformArch } = require('./utils')
 
 const kindlegenFilename = () => (process.platform === 'win32' ? 'kindlegen.exe' : 'kindlegen')
@@ -95,12 +95,21 @@ const extractKindleGen = (file) => {
 module.exports.epubToMobi = (input, output, options = {}) => {
   let kindlegenPath = options.kindlegenPath || localKindlegenPath()
   return new Promise((resolve, reject) => {
-    let opts = ['-c2', '-dont_append_source']
+    const opts = ['-c2', '-dont_append_source']
+
     if (options.debug) {
       opts.push('-verbose')
     }
+
     opts.push(input)
-    let kindlegen = spawn(kindlegenPath, opts)
+
+    if (options.debug) {
+      debug('*** mobi build')
+      debug(`${kindlegenPath} ${opts.join(' ')}`)
+    }
+
+    const kindlegen = spawn(kindlegenPath, opts)
+
     kindlegen.on('close', async (code) => {
       if (code !== 0 && code !== 1) {
         reject(`KindleGen returned error ${code}`)

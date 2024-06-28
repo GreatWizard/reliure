@@ -1,58 +1,53 @@
 const stat = require('fs').stat
 const spawn = require('child_process').spawn
+const { debug, log } = require('./message')
 
-module.exports = function (src, args = [], options = {}, pandocPath = 'pandoc') {
+module.exports = function (src, args = [], spawnOptions = {}, pandocPath = 'pandoc', options = {}) {
+  if (options.debug) {
+    debug('*** pandoc build')
+    debug(JSON.stringify(spawnOptions, 0, 2))
+    debug(`${pandocPath} ${args.join(' ')}`)
+  }
+
   return new Promise((resolve, reject) => {
-    let pdSpawn
-    let result = ''
-    let isURL
+    // Check file status of src
+    stat(src, (_err, stats) => {
+      // Check if src is URL match.
+      const isURL = /^(https?|ftp):\/\//i.test(src)
 
-    // Event Handlers
-    let onStdOutData
-    let onStdOutEnd
-    let onStdErrData
-    let onStatCheck
-
-    isURL = function (src) {
-      return /^(https?|ftp):\/\//i.test(src)
-    }
-
-    onStdOutData = function (data) {
-      result += data
-    }
-
-    onStdOutEnd = function () {
-      resolve(result)
-    }
-
-    onStdErrData = function (err) {
-      reject(new Error(err))
-    }
-
-    onStatCheck = function (err, stats) {
       // If src is a file or valid web URL, push the src back into args array
       if ((stats && stats.isFile()) || isURL) {
         args.unshift(src)
       }
 
-      // Create child_process.spawn
-      pdSpawn = spawn(pandocPath, args, options)
+      const pdSpawn = spawn(pandocPath, args, spawnOptions)
 
       // If src is not a file, assume a string input.
       if (typeof stats === 'undefined' && !isURL) {
         pdSpawn.stdin.end(src, 'utf-8')
       }
 
-      // Set handlers...
-      pdSpawn.stdout.on('data', onStdOutData)
-      pdSpawn.stdout.on('end', onStdOutEnd)
-      pdSpawn.on('error', onStdErrData)
-    }
+      let result = ''
+      let error = ''
 
-    // Check if src is URL match.
-    isURL = isURL(src)
+      pdSpawn.stdout.on('data', (data) => {
+        result += data
+        if (options.debug) {
+          log(data)
+        }
+      })
 
-    // Check file status of src
-    stat(src, onStatCheck)
+      pdSpawn.stderr.on('data', (data) => {
+        error += data
+      })
+
+      pdSpawn.on('close', (code) => {
+        if (code !== 0 || error !== '') {
+          reject(new Error(`pandoc returned error ${code}: ${error}`))
+        }
+
+        resolve(result)
+      })
+    })
   })
 }

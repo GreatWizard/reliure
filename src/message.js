@@ -23,6 +23,10 @@ module.exports.error = (message, icon = '📕') => {
   console.error(chalk.red(`${icon} ${message}`))
 }
 
+module.exports.debug = (message, icon = '⚙️') => {
+  console.log(chalk.gray(`${icon} ${message}`))
+}
+
 module.exports.log = (message = '') => {
   console.log(message)
 }
