@@ -23,7 +23,7 @@ module.exports = (settings, options = {}) => {
     return { formats: result }
   }
 
-  if (!options['non-interactive']) {
+  if (options['non-interactive']) {
     throw new Error('You should specify at least one format')
   }
 
