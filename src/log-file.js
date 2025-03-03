@@ -18,6 +18,11 @@ module.exports.initLogging = () => {
 module.exports.outputLogFile = async (error) => {
   if (!isEnabled) return
   if (error) console.trace(error)
-  process.stdout.write = originalStderrtWrite
-  await writeFile('./error.log', output, 'utf-8')
+  await writeFile('./reliure.log', output, 'utf-8')
 }
+
+process.on('exit', () => {
+  if (originalStderrtWrite && isEnabled) {
+    process.stdout.write = originalStderrtWrite
+  }
+})
