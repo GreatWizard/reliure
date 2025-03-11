@@ -29,8 +29,9 @@ const options = getOptions()
   clear()
   printTitle()
 
+  let configFile = await findConfig(options.config)
   if (!options['non-interactive']) {
-    initLogging()
+    initLogging(configFile)
   }
 
   try {
@@ -40,7 +41,6 @@ const options = getOptions()
     settings.kindlegenPath = undefined
   }
 
-  let configFile = await findConfig(options.config)
   let config = await readConfig(configFile)
   await validateConfig(config)
   let cwd = await path.dirname(configFile)
