@@ -5,6 +5,7 @@ const path = require('path')
 const build = require('./build')
 const getFormats = require('./get-formats')
 const { detectOrInstallKindlegen } = require('./kindlegen')
+const { initLogging, outputLogFile } = require('./log-file')
 const mergeConfig = require('./merge-config')
 const { printTitle, warn, info, success, error, log } = require('./message')
 const { getOptions, printVersion, printHelp } = require('./options')
@@ -28,6 +29,11 @@ const options = getOptions()
   clear()
   printTitle()
 
+  let configFile = await findConfig(options.config)
+  if (!options['non-interactive']) {
+    initLogging(configFile)
+  }
+
   try {
     settings.kindlegenPath = await detectOrInstallKindlegen(options)
   } catch (e) {
@@ -35,7 +41,6 @@ const options = getOptions()
     settings.kindlegenPath = undefined
   }
 
-  let configFile = await findConfig(options.config)
   let config = await readConfig(configFile)
   await validateConfig(config)
   let cwd = await path.dirname(configFile)
@@ -70,12 +75,14 @@ const options = getOptions()
   log('✨ Done.')
 })
   .call(this, options)
-  .catch((e) => {
+  .catch(async (e) => {
     if (e.message) {
       error(`${e.message}`, '❌')
+      await outputLogFile(e)
     } else {
       error(`We are sorry, but an error has occurred.`, '❌')
       console.trace(e)
+      await outputLogFile()
     }
     if (options.debug) {
       console.trace(e)
