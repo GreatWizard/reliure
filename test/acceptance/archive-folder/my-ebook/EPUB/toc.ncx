@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ncx version="2005-1" xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <head>
+    <meta name="dtb:uid" content="urn:isbn:1234567890123" />
+    <meta name="dtb:depth" content="1" />
+    <meta name="dtb:totalPageCount" content="0" />
+    <meta name="dtb:maxPageNumber" content="0" />
+    <meta name="cover" content="cover_jpg" />
+  </head>
+  <docTitle>
+    <text>Test - LaTeX</text>
+  </docTitle>
+  <navMap>
+    <navPoint id="navPoint-0">
+      <navLabel>
+        <text>Test - LaTeX</text>
+      </navLabel>
+      <content src="text/title_page.xhtml" />
+    </navPoint>
+    <navPoint id="navPoint-1">
+      <navLabel>
+        <text>Lorem ipsum</text>
+      </navLabel>
+      <content src="text/ch001.xhtml#lorem-ipsum" />
+    </navPoint>
+    <navPoint id="navPoint-2">
+      <navLabel>
+        <text>Vestibulum sagittis</text>
+      </navLabel>
+      <content src="text/ch002.xhtml#vestibulum-sagittis" />
+    </navPoint>
+    <navPoint id="navPoint-3">
+      <navLabel>
+        <text>Mattis purus</text>
+      </navLabel>
+      <content src="text/ch003.xhtml#mattis-purus" />
+    </navPoint>
+    <navPoint id="navPoint-4">
+      <navLabel>
+        <text>Cras</text>
+      </navLabel>
+      <content src="text/ch004.xhtml#cras" />
+    </navPoint>
+    <navPoint id="navPoint-5">
+      <navLabel>
+        <text>Aliquam</text>
+      </navLabel>
+      <content src="text/ch005.xhtml#aliquam" />
+    </navPoint>
+  </navMap>
+</ncx>

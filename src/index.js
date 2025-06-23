@@ -3,6 +3,7 @@ const clear = require('clear')
 const path = require('path')
 
 const build = require('./build')
+const { archive } = require('./edition')
 const getFormats = require('./get-formats')
 const { detectOrInstallKindlegen } = require('./kindlegen')
 const { initLogging, outputLogFile } = require('./log-file')
@@ -23,6 +24,11 @@ const options = getOptions()
 
   if (options.version) {
     printVersion()
+    return
+  }
+
+  if (options.archive) {
+    await archive(options.config, `${options.config}.epub`)
     return
   }
 
