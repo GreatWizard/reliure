@@ -7,18 +7,27 @@ const { schemaReliure } = require('./schemas')
 const DEFAULT_FILENAME = 'reliure.yml'
 
 module.exports.findConfig = (pathOption) => {
-  let file
-  if (pathOption) {
-    pathOption = path.isAbsolute(pathOption) ? pathOption : path.resolve(pathOption)
-    if (fs.existsSync(path.join(pathOption, DEFAULT_FILENAME))) {
-      file = path.join(pathOption, DEFAULT_FILENAME)
-    } else if (fs.existsSync(pathOption)) {
-      file = pathOption
-    }
-  } else {
-    file = DEFAULT_FILENAME
+  if (!pathOption) {
+    pathOption = DEFAULT_FILENAME
   }
-  return file
+  if (!fs.existsSync(pathOption)) {
+    throw `Please run binding in the directory where the configuration file "${DEFAULT_FILENAME}" is located.`
+  }
+
+  let stat = fs.statSync(pathOption)
+
+  if (stat.isFile()) {
+    return path.resolve(pathOption)
+  }
+
+  if (stat.isDirectory()) {
+    let configFile = path.join(pathOption, DEFAULT_FILENAME)
+    if (!fs.existsSync(configFile)) {
+      throw `Please run binding in the directory where the configuration file "${DEFAULT_FILENAME}" is located.`
+    }
+
+    return path.resolve(configFile)
+  }
 }
 
 module.exports.readConfig = (filename) => {
