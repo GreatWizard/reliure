@@ -9,17 +9,10 @@ const DEFAULT_FILENAME = 'reliure.yml'
 module.exports.findConfig = (pathOption) => {
   let file
   if (pathOption) {
-    if (fs.existsSync(path.join(path.resolve(pathOption), DEFAULT_FILENAME))) {
-      // check filename with relative path + /reliure.yml
-      file = path.join(path.resolve(pathOption), DEFAULT_FILENAME)
-    } else if (fs.existsSync(path.resolve(pathOption))) {
-      // check filename with relative path
-      file = path.resolve(pathOption)
-    } else if (fs.existsSync(path.join(pathOption, DEFAULT_FILENAME))) {
-      // check filename with absolute path + /reliure.yml
+    pathOption = path.isAbsolute(pathOption) ? pathOption : path.resolve(pathOption)
+    if (fs.existsSync(path.join(pathOption, DEFAULT_FILENAME))) {
       file = path.join(pathOption, DEFAULT_FILENAME)
     } else if (fs.existsSync(pathOption)) {
-      // check filename with absolute path
       file = pathOption
     }
   } else {
