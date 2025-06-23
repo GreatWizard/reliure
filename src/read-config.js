@@ -6,21 +6,21 @@ const { schemaReliure } = require('./schemas')
 
 const DEFAULT_FILENAME = 'reliure.yml'
 
-module.exports.findConfig = (filename) => {
+module.exports.findConfig = (pathOption) => {
   let file
-  if (filename) {
-    if (fs.existsSync(path.join(path.resolve(filename), DEFAULT_FILENAME))) {
+  if (pathOption) {
+    if (fs.existsSync(path.join(path.resolve(pathOption), DEFAULT_FILENAME))) {
       // check filename with relative path + /reliure.yml
-      file = path.join(path.resolve(filename), DEFAULT_FILENAME)
-    } else if (fs.existsSync(path.resolve(filename))) {
+      file = path.join(path.resolve(pathOption), DEFAULT_FILENAME)
+    } else if (fs.existsSync(path.resolve(pathOption))) {
       // check filename with relative path
-      file = path.resolve(filename)
-    } else if (fs.existsSync(path.join(filename, DEFAULT_FILENAME))) {
+      file = path.resolve(pathOption)
+    } else if (fs.existsSync(path.join(pathOption, DEFAULT_FILENAME))) {
       // check filename with absolute path + /reliure.yml
-      file = path.join(filename, DEFAULT_FILENAME)
-    } else if (fs.existsSync(filename)) {
+      file = path.join(pathOption, DEFAULT_FILENAME)
+    } else if (fs.existsSync(pathOption)) {
       // check filename with absolute path
-      file = filename
+      file = pathOption
     }
   } else {
     file = DEFAULT_FILENAME
