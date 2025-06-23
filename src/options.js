@@ -14,6 +14,13 @@ const optionList = [
     description: 'The configuration file/directory to process',
   },
   {
+    name: 'archive',
+    alias: 'a',
+    type: Boolean,
+    description:
+      'Zip a folder that implements the epub specification. If you use this option, the config should be the path to the folder to archive.',
+  },
+  {
     name: 'epub',
     type: Boolean,
     description: 'Specify to bound the epub format',
@@ -88,6 +95,7 @@ module.exports.printHelp = () => {
 reliure --epub --pdf my-project/
 reliure --epub --pdf my-complex-project/reliure-config.yml
 reliure --mobi --kindlegen-path=/usr/local/bin/kindlegen
+reliure --archive my-unzipped-epub-i-manually-changed/
 reliure -v
 reliure --version`,
       },
