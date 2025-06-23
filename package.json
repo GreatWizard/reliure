@@ -46,6 +46,7 @@
     "pretest:acceptance": "find ./test -type f \\( -iname '*.epub' -o -iname '*.mobi' -o -iname '*.pdf' \\) -delete",
     "test": "npm-run-all pretest test:unit pretest:acceptance test:acceptance",
     "test:acceptance": "npm-run-all test:acceptance:*",
+    "test:acceptance:archive-folder": "node ./src/index.js --debug --non-interactive --archive test/acceptance/archive-folder/my-ebook && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar test/acceptance/archive-folder/*.epub",
     "test:acceptance:custom-fonts-ttf": "node ./src/index.js --debug --non-interactive --epub --pdf test/acceptance/custom-fonts-ttf && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar test/acceptance/custom-fonts-ttf/*.epub",
     "test:acceptance:custom-fonts-otf": "node ./src/index.js --debug --non-interactive --epub --pdf test/acceptance/custom-fonts-otf && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar test/acceptance/custom-fonts-otf/*.epub",
     "test:acceptance:docx-one-file": "node ./src/index.js --debug --non-interactive --epub --pdf test/acceptance/docx-one-file && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar test/acceptance/docx-one-file/*.epub",
