@@ -1,5 +1,7 @@
 const inquirer = require('inquirer')
 
+const { warn } = require('./message')
+
 const defaultChoices = ['epub', 'mobi', 'pdf']
 
 module.exports = (settings, options = {}) => {
@@ -18,7 +20,13 @@ module.exports = (settings, options = {}) => {
       result.push('mobi')
     }
     if (options.pdf && choices.includes('pdf')) {
-      result.push('pdf')
+      if (options.archive) {
+        warn(
+          '--pdf option is unrelated to the --archive functionality and will be ignored. --archive re-archives a folder that follows EPUB specifications as EPUB or mobi.',
+        )
+      } else {
+        result.push('pdf')
+      }
     }
     return { formats: result }
   }
