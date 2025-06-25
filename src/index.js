@@ -10,7 +10,7 @@ const { initLogging, outputLogFile } = require('./log-file')
 const mergeConfig = require('./merge-config')
 const { printTitle, warn, info, success, error, log } = require('./message')
 const { getOptions, printVersion, printHelp } = require('./options')
-const { findConfig, readConfig, validateConfig } = require('./read-config')
+const { ensureConfigPath, findConfig, readConfig, validateConfig } = require('./read-config')
 
 const settings = { kindlegenPath: undefined }
 
@@ -27,17 +27,12 @@ const options = getOptions()
     return
   }
 
-  if (options.archive) {
-    await archive(options.config, `${options.config}.epub`)
-    return
-  }
-
   clear()
   printTitle()
 
-  let configFile = await findConfig(options.config)
+  let configPath = ensureConfigPath(options.config)
   if (!options['non-interactive']) {
-    initLogging(configFile)
+    initLogging(configPath)
   }
 
   try {
@@ -47,13 +42,20 @@ const options = getOptions()
     settings.kindlegenPath = undefined
   }
 
+  let { formats } = await getFormats(settings, options)
+
+  if (options.archive) {
+    await archive(options.config, `${options.config}.epub`)
+    success(`Created archive ${options.config}.epub`)
+    return
+  }
+
+  let configFile = await findConfig(configPath)
   let config = await readConfig(configFile)
   await validateConfig(config)
   let cwd = await path.dirname(configFile)
 
   info(`Book detected: "${config.filename}"`)
-
-  let { formats } = await getFormats(settings, options)
 
   let builds = []
   for (let format of formats) {

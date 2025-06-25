@@ -11,6 +11,10 @@ module.exports = (settings, options = {}) => {
     choices.splice(choices.indexOf('mobi'), 1)
   }
 
+  if (options.archive) {
+    choices.splice(choices.indexOf('pdf'), 1)
+  }
+
   if (options.epub || options.mobi || options.pdf) {
     let result = []
     if (options.epub && choices.includes('epub')) {
@@ -22,7 +26,7 @@ module.exports = (settings, options = {}) => {
     if (options.pdf && choices.includes('pdf')) {
       if (options.archive) {
         warn(
-          '--pdf option is unrelated to the --archive functionality and will be ignored. --archive re-archives a folder that follows EPUB specifications as EPUB or mobi.',
+          'Specified option --pdf is unrelated to the --archive functionality and will be ignored. --archive re-archives a folder that follows EPUB specifications as EPUB or mobi.',
         )
       } else {
         result.push('pdf')
@@ -31,7 +35,7 @@ module.exports = (settings, options = {}) => {
     return { formats: result }
   }
 
-  if (options['non-interactive']) {
+  if (options['non-interactive'] && !options.archive) {
     throw new Error('You should specify at least one format')
   }
 
