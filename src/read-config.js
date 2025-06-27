@@ -6,14 +6,17 @@ const { schemaReliure } = require('./schemas')
 
 const DEFAULT_FILENAME = 'reliure.yml'
 
-module.exports.findConfig = (pathOption) => {
+module.exports.ensureConfigPath = (pathOption) => {
   if (!pathOption) {
     pathOption = DEFAULT_FILENAME
   }
   if (!fs.existsSync(pathOption)) {
     throw `Please run binding in the directory where the configuration file "${DEFAULT_FILENAME}" is located.`
   }
+  return pathOption
+}
 
+module.exports.findConfig = (pathOption) => {
   let stat = fs.statSync(pathOption)
 
   if (stat.isFile()) {

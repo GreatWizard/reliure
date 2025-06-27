@@ -1,5 +1,7 @@
 const inquirer = require('inquirer')
 
+const { warn } = require('./message')
+
 const defaultChoices = ['epub', 'mobi', 'pdf']
 
 module.exports = (settings, options = {}) => {
@@ -7,6 +9,10 @@ module.exports = (settings, options = {}) => {
 
   if (!settings.kindlegenPath) {
     choices.splice(choices.indexOf('mobi'), 1)
+  }
+
+  if (options.archive) {
+    choices.splice(choices.indexOf('pdf'), 1)
   }
 
   if (options.epub || options.mobi || options.pdf) {
@@ -18,12 +24,18 @@ module.exports = (settings, options = {}) => {
       result.push('mobi')
     }
     if (options.pdf && choices.includes('pdf')) {
-      result.push('pdf')
+      if (options.archive) {
+        warn(
+          'Specified option --pdf is unrelated to the --archive functionality and will be ignored. --archive re-archives a folder that follows EPUB specifications as EPUB or mobi.',
+        )
+      } else {
+        result.push('pdf')
+      }
     }
     return { formats: result }
   }
 
-  if (options['non-interactive']) {
+  if (options['non-interactive'] && !options.archive) {
     throw new Error('You should specify at least one format')
   }
 
