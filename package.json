@@ -42,10 +42,10 @@
   "scripts": {
     "lint": "eslint . --cache",
     "lint:fix": "eslint . --fix",
-    "pretest": "node scripts/github-releases.js",
+    "github-releases": "node scripts/github-releases.js",
     "pretest:acceptance": "find ./test -type f \\( -iname '*.epub' -o -iname '*.mobi' -o -iname '*.pdf' \\) -delete",
-    "test": "npm-run-all pretest test:unit pretest:acceptance test:acceptance",
-    "test:acceptance": "npm-run-all test:acceptance:*",
+    "test": "npm-run-all test:unit test:acceptance",
+    "test:acceptance": "npm-run-all github-releases pretest:acceptance test:acceptance:*",
     "test:acceptance:archive-folder": "node ./src/index.js --debug --non-interactive --archive test/acceptance/archive-folder/my-ebook && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar test/acceptance/archive-folder/my-ebook.epub",
     "test:acceptance:archive-folder-mobi": "node ./src/index.js --debug --non-interactive --mobi --archive test/acceptance/archive-folder/my-ebook",
     "test:acceptance:custom-fonts-ttf": "node ./src/index.js --debug --non-interactive --epub --pdf test/acceptance/custom-fonts-ttf && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar test/acceptance/custom-fonts-ttf/*.epub",
