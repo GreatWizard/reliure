@@ -21,9 +21,7 @@ const getFormatFromInline = (settings, options) => {
     }
     if (options.mobi) {
       if (!settings.kindlegenPath) {
-        warn(
-          'Specified option --mobi will be ignored because mobi format is disabled.',
-        )
+        warn('Specified option --mobi will be ignored because mobi format is disabled.')
       } else {
         result.push('mobi')
       }
