@@ -5,16 +5,14 @@ const { warn } = require('./message')
 const defaultChoices = ['epub', 'mobi', 'pdf']
 
 module.exports = (settings, options = {}) => {
-  let choices = defaultChoices
-
-  if (!settings.kindlegenPath) {
-    choices.splice(choices.indexOf('mobi'), 1)
+  if (options['non-interactive']) {
+    return getFormatFromInline(settings, options)
+  } else {
+    return getFormatFromPrommpt(settings, options)
   }
+}
 
-  if (options.archive) {
-    choices.splice(choices.indexOf('pdf'), 1)
-  }
-
+const getFormatFromInline = (settings, options) => {
   if (options.epub || options.mobi || options.pdf) {
     let result = []
     if (options.epub && choices.includes('epub')) {
@@ -35,8 +33,20 @@ module.exports = (settings, options = {}) => {
     return { formats: result }
   }
 
-  if (options['non-interactive'] && !options.archive) {
+  if (!options.archive) {
     throw new Error('You should specify at least one format')
+  }
+}
+
+const getFormatFromPrommpt = (settings, options) => {
+  let choices = defaultChoices
+
+  if (!settings.kindlegenPath) {
+    choices.splice(choices.indexOf('mobi'), 1)
+  }
+
+  if (options.archive) {
+    choices.splice(choices.indexOf('pdf'), 1)
   }
 
   if (choices.length === 1) {
