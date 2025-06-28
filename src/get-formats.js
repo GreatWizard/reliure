@@ -19,7 +19,13 @@ const getFormatFromInline = (settings, options) => {
       result.push('epub')
     }
     if (options.mobi && choices.includes('mobi')) {
-      result.push('mobi')
+      if (!settings.kindlegenPath) {
+        warn(
+          'Specified option --mobi will be ignored because mobi format is disabled.',
+        )
+      } else {
+        result.push('mobi')
+      }
     }
     if (options.pdf && choices.includes('pdf')) {
       if (options.archive) {
@@ -33,7 +39,7 @@ const getFormatFromInline = (settings, options) => {
     return { formats: result }
   }
 
-  if (!options.archive) {
+  if (result.length <= 0 && !options.archive) {
     throw new Error('You should specify at least one format')
   }
 }
