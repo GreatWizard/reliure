@@ -16,10 +16,10 @@ const getFormatFromInline = (settings, options) => {
   let result = []
 
   if (options.epub || options.mobi || options.pdf) {
-    if (options.epub && choices.includes('epub')) {
+    if (options.epub) {
       result.push('epub')
     }
-    if (options.mobi && choices.includes('mobi')) {
+    if (options.mobi) {
       if (!settings.kindlegenPath) {
         warn(
           'Specified option --mobi will be ignored because mobi format is disabled.',
@@ -28,7 +28,7 @@ const getFormatFromInline = (settings, options) => {
         result.push('mobi')
       }
     }
-    if (options.pdf && choices.includes('pdf')) {
+    if (options.pdf) {
       if (options.archive) {
         warn(
           'Specified option --pdf is unrelated to the --archive functionality and will be ignored. --archive re-archives a folder that follows EPUB specifications as EPUB or mobi.',
