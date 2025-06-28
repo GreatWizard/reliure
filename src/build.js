@@ -20,6 +20,7 @@ const {
   opfSubstitutions,
   appendExtraMetadata,
 } = require('./edition')
+const { success } = require('./message')
 
 const FORMATS = [
   { name: 'LaTeX', extension: 'tex' },
@@ -213,5 +214,21 @@ module.exports = async (config, options = {}) => {
       kindlegenPath: options.kindlegenPath,
       debug: options.debug,
     })
+  }
+}
+
+module.exports.rearchive = async (inputFolder, options) => {
+  // The epub has the same name as the folder we rearchive
+  let outputFile = `${inputFolder}.epub`
+  await archive(path.resolve(inputFolder), outputFile)
+  success(`Created archive ${inputFolder}.epub`)
+
+  if (options.mobi) {
+    // convert epub to mobi
+    await epubToMobi(path.resolve(outputFile), `${inputFolder}.mobi`, {
+      kindlegenPath: options.kindlegenPath,
+      debug: options.debug,
+    })
+    success(`Created archive ${inputFolder}.mobi`)
   }
 }
