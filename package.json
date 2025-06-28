@@ -59,7 +59,7 @@
     "test:acceptance:toc": "node ./src/index.js --debug --non-interactive --epub --pdf test/acceptance/toc && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar test/acceptance/toc/*.epub",
     "test:acceptance:mobi": "node ./src/index.js --debug --non-interactive --mobi test/acceptance/latex-multi-files",
     "test:acceptance:french": "node ./src/index.js --debug --non-interactive --epub --pdf test/acceptance/french && java -jar github_releases/w3c/epubcheck/epubcheck-*/epubcheck.jar test/acceptance/french/*.epub",
-    "test:unit": "mocha test/unit/**/*.test.js",
+    "test:unit": "vitest test/unit",
     "build": "pkg . --out-path=build",
     "start": "node ./src/index.js"
   },
@@ -83,19 +83,16 @@
     "unzipper": "^0.10.10"
   },
   "devDependencies": {
-    "chai": "^4.4.1",
+    "@vitest/eslint-plugin": "^1.3.3",
     "download-github-release": "^0.3.2",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "mocha": "^10.4.0",
-    "mocha-sinon": "^2.1.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
-    "sinon": "^17.0.1",
-    "sinon-chai": "^3.7.0"
+    "vitest": "^3.2.4"
   },
   "githubReleases": {
     "w3c/epubcheck": "v5.1.0"

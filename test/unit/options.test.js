@@ -1,26 +1,16 @@
-const chai = require('chai')
-const { setupSinon } = require('./helpers')
+import { assert, describe, test, vi } from 'vitest'
 
-const { expect } = chai
+const subject = require('../../src/options.js')
 
-setupSinon()
+const consoleLog = vi.spyOn(console, 'log')
 
 describe('options', function () {
-  let logSpy, subject
-
-  this.beforeEach(function () {
-    const message = require('../../src/message.js')
-
-    logSpy = this.sinon.spy(message, 'log')
-
-    subject = require('../../src/options.js')
-  })
-
-  it('prints version', function () {
+  test('prints version', () => {
     subject.printVersion()
-
-    expect(logSpy.args[0]).to.match(
+    assert.match(
+      consoleLog.mock.lastCall[0],
       /v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$/,
+      'version matches the regexp',
     )
   })
 })

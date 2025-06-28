@@ -13,5 +13,17 @@
   "parserOptions": {
     "ecmaVersion": 13
   },
-  "rules": {}
+  "rules": {},
+  "overrides": [
+    {
+      "files": ["test/unit/**.js"],
+      "extends": ["plugin:@vitest/legacy-recommended"],
+      "plugins": ["@vitest"],
+      "rules": {
+        // TODO: update ESLint and fix vitest ESLint config
+        "node/no-unsupported-features/es-syntax": "off",
+        "node/no-unpublished-import": "off"
+      }
+    }
+  ]
 }
