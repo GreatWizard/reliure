@@ -3,7 +3,7 @@ const clear = require('clear')
 const path = require('path')
 
 const build = require('./build')
-const { archive } = require('./edition')
+const { rearchive } = require('./build')
 const getFormats = require('./get-formats')
 const { detectOrInstallKindlegen } = require('./kindlegen')
 const { initLogging, outputLogFile } = require('./log-file')
@@ -45,8 +45,11 @@ const options = getOptions()
   let { formats } = await getFormats(settings, options)
 
   if (options.archive) {
-    await archive(options.config, `${options.config}.epub`)
-    success(`Created archive ${options.config}.epub`)
+    await rearchive(options.config, {
+      mobi: formats.includes('mobi'),
+      kindlegenPath: settings.kindlegenPath,
+      debug: options.debug,
+    })
     return
   }
 

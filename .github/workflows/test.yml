@@ -3,9 +3,24 @@ name: Test
 on: [push]
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-latest
-    name: Tests
+    name: Lint
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm lint
+
+  acceptance_test:
+    runs-on: ubuntu-latest
+    name: Acceptance
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v2
@@ -26,5 +41,19 @@ jobs:
           sudo dpkg -i pandoc.deb
           rm pandoc.deb
       - run: pnpm install
-      - run: pnpm lint
-      - run: pnpm test
+      - run: pnpm test:acceptance
+
+  unit_test:
+    runs-on: ubuntu-latest
+    name: Unit
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'pnpm'
+      - run: pnpm install
+      - run: pnpm test:unit
