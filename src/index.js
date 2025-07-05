@@ -4,13 +4,15 @@ const path = require('path')
 
 const build = require('./build')
 const { rearchive } = require('./build')
+const getArchiveFolder = require('./get-archive-folder')
+const { commands, getCommand } = require('./get-command')
 const getFormats = require('./get-formats')
 const { detectOrInstallKindlegen } = require('./kindlegen')
 const { initLogging, outputLogFile } = require('./log-file')
 const mergeConfig = require('./merge-config')
 const { printTitle, warn, info, success, error, log } = require('./message')
 const { getOptions, printVersion, printHelp } = require('./options')
-const { ensureConfigPath, findConfig, readConfig, validateConfig } = require('./read-config')
+const { findConfig, readConfig, validateConfig } = require('./read-config')
 
 const settings = { kindlegenPath: undefined }
 
@@ -30,30 +32,34 @@ const options = getOptions()
   clear()
   printTitle()
 
-  let configPath = ensureConfigPath(options.config)
-  if (!options['non-interactive']) {
-    initLogging(configPath)
+  if (Object.keys(options).length <= 0) {
+    initLogging()
   }
 
   try {
     settings.kindlegenPath = await detectOrInstallKindlegen(options)
   } catch (e) {
-    warn(`Kindle format (Mobi) is disabled: ${e.message}`)
+    warn(`Kindle format (Mobi) is disabled: ${e.message}\n`)
     settings.kindlegenPath = undefined
   }
 
-  let { formats } = await getFormats(settings, options)
+  let command = await getCommand(options)
+  let { formats } = await getFormats(settings, command, options)
 
-  if (options.archive) {
-    await rearchive(options.config, {
+  if (command === commands.ARCHIVE) {
+    let folderPath = options.config
+    if (!folderPath) folderPath = await getArchiveFolder()
+
+    await rearchive(folderPath, {
       mobi: formats.includes('mobi'),
       kindlegenPath: settings.kindlegenPath,
       debug: options.debug,
     })
+
     return
   }
 
-  let configFile = await findConfig(configPath)
+  let configFile = await findConfig(options.config)
   let config = await readConfig(configFile)
   await validateConfig(config)
   let cwd = await path.dirname(configFile)

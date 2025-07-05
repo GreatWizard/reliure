@@ -8,9 +8,9 @@ let isEnabled = false
 let location = '.'
 let originalStderrtWrite = undefined
 
-module.exports.initLogging = (configPath) => {
+module.exports.initLogging = () => {
   isEnabled = true
-  location = resolve(configPath)
+  location = resolve('.')
   originalStderrtWrite = process.stderr.write.bind(process.stderr)
   process.stderr.write = (chunk, encoding, callback) => {
     if (typeof chunk === 'string') {
