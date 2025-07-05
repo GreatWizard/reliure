@@ -27,7 +27,7 @@ module.exports.getCommand = async (options = {}) => {
 }
 
 const getCommandFromPrompt = async () => {
-  const choices = ['Generate a ebook', 'Archive a folder to ebook']
+  const choices = ['Generate an ebook', 'Archive a folder to ebook']
   const answer = await inquirer.prompt([
     {
       type: 'list',
