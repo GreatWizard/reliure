@@ -12,7 +12,7 @@ const { initLogging, outputLogFile } = require('./log-file')
 const mergeConfig = require('./merge-config')
 const { printTitle, warn, info, success, error, log } = require('./message')
 const { getOptions, printVersion, printHelp } = require('./options')
-const { ensureConfigPath, findConfig, readConfig, validateConfig } = require('./read-config')
+const { findConfig, readConfig, validateConfig } = require('./read-config')
 
 const settings = { kindlegenPath: undefined }
 
@@ -32,9 +32,8 @@ const options = getOptions()
   clear()
   printTitle()
 
-  let configPath = ensureConfigPath(options.config)
-  if (!options['non-interactive']) {
-    initLogging(configPath)
+  if (Object.keys(options).length <= 0) {
+    initLogging()
   }
 
   try {
@@ -60,7 +59,7 @@ const options = getOptions()
     return
   }
 
-  let configFile = await findConfig(configPath)
+  let configFile = await findConfig(options.config)
   let config = await readConfig(configFile)
   await validateConfig(config)
   let cwd = await path.dirname(configFile)
