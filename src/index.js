@@ -4,6 +4,7 @@ const path = require('path')
 
 const build = require('./build')
 const { rearchive } = require('./build')
+const getArchiveFolder = require('./get-archive-folder')
 const { commands, getCommand } = require('./get-command')
 const getFormats = require('./get-formats')
 const { detectOrInstallKindlegen } = require('./kindlegen')
@@ -47,11 +48,15 @@ const options = getOptions()
   let { formats } = await getFormats(settings, command, options)
 
   if (command === commands.ARCHIVE) {
-    await rearchive(options.config, {
+    let folderPath = options.config
+    if (!folderPath) folderPath = await getArchiveFolder()
+
+    await rearchive(folderPath, {
       mobi: formats.includes('mobi'),
       kindlegenPath: settings.kindlegenPath,
       debug: options.debug,
     })
+
     return
   }
 
