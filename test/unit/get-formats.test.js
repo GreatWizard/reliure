@@ -12,8 +12,9 @@ describe('get-formats', function () {
   describe('command line', function () {
     test('it returns the specified formats', () => {
       let settings = { kindlegenPath: true }
+      let command = 'GENERATE'
       let options = { epub: true, mobi: true, pdf: true }
-      let formats = getFormat(settings, options)
+      let formats = getFormat(settings, command, options)
       expect(formats).toMatchInlineSnapshot(`
         {
           "formats": [
@@ -27,8 +28,9 @@ describe('get-formats', function () {
 
     test('with kindlegenPath disabled, it removes mobi format', () => {
       let settings = { kindlegenPath: false }
+      let command = 'GENERATE'
       let options = { epub: true, mobi: true, pdf: true }
-      let formats = getFormat(settings, options)
+      let formats = getFormat(settings, command, options)
       expect(formats).toMatchInlineSnapshot(`
         {
           "formats": [
@@ -43,14 +45,16 @@ describe('get-formats', function () {
 
     test('it throws when no format is specified', () => {
       let settings = { kindlegenPath: true }
+      let command = 'GENERATE'
       let options = { 'non-interactive': true }
-      assert.throws(() => getFormat(settings, options), 'You should specify at least one format')
+      assert.throws(() => getFormat(settings, command, options), 'You should specify at least one format')
     })
 
     test('with archive option, it removes pdf format', () => {
       let settings = { kindlegenPath: true }
+      let command = 'ARCHIVE'
       let options = { epub: true, mobi: true, pdf: true, archive: true }
-      let formats = getFormat(settings, options)
+      let formats = getFormat(settings, command, options)
       expect(formats).toMatchInlineSnapshot(`
         {
           "formats": [
@@ -67,8 +71,9 @@ describe('get-formats', function () {
 
     test('with archive option, specifying a format is optional', () => {
       let settings = { kindlegenPath: true }
+      let command = 'ARCHIVE'
       let options = { archive: true }
-      let formats = getFormat(settings, options)
+      let formats = getFormat(settings, command, options)
       expect(formats).toMatchInlineSnapshot(`
         {
           "formats": [],

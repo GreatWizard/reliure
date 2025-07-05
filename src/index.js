@@ -4,6 +4,7 @@ const path = require('path')
 
 const build = require('./build')
 const { rearchive } = require('./build')
+const { commands, getCommand } = require('./get-command')
 const getFormats = require('./get-formats')
 const { detectOrInstallKindlegen } = require('./kindlegen')
 const { initLogging, outputLogFile } = require('./log-file')
@@ -38,13 +39,14 @@ const options = getOptions()
   try {
     settings.kindlegenPath = await detectOrInstallKindlegen(options)
   } catch (e) {
-    warn(`Kindle format (Mobi) is disabled: ${e.message}`)
+    warn(`Kindle format (Mobi) is disabled: ${e.message}\n`)
     settings.kindlegenPath = undefined
   }
 
-  let { formats } = await getFormats(settings, options)
+  let command = await getCommand(options)
+  let { formats } = await getFormats(settings, command, options)
 
-  if (options.archive) {
+  if (command === commands.ARCHIVE) {
     await rearchive(options.config, {
       mobi: formats.includes('mobi'),
       kindlegenPath: settings.kindlegenPath,

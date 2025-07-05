@@ -1,18 +1,19 @@
 const inquirer = require('inquirer')
 
 const { warn } = require('./message')
+const { commands } = require('./get-command')
 
 const defaultChoices = ['epub', 'mobi', 'pdf']
 
-module.exports = (settings, options = {}) => {
+module.exports = (settings, command, options = {}) => {
   if (Object.keys(options).length > 0) {
-    return getFormatFromInline(settings, options)
+    return getFormatFromInline(settings, command, options)
   } else {
-    return getFormatFromPrompt(settings, options)
+    return getFormatFromPrompt(settings, command)
   }
 }
 
-const getFormatFromInline = (settings, options) => {
+const getFormatFromInline = (settings, command, options) => {
   let result = []
 
   if (options.epub || options.mobi || options.pdf) {
@@ -27,7 +28,7 @@ const getFormatFromInline = (settings, options) => {
       }
     }
     if (options.pdf) {
-      if (options.archive) {
+      if (command === commands.ARCHIVE) {
         warn(
           'Specified option --pdf is unrelated to the --archive functionality and will be ignored. --archive re-archives a folder that follows EPUB specifications as EPUB or mobi.',
         )
@@ -37,25 +38,25 @@ const getFormatFromInline = (settings, options) => {
     }
   }
 
-  if (result.length <= 0 && !options.archive) {
+  if (result.length <= 0 && command !== commands.ARCHIVE) {
     if (options['non-interactive']) {
       throw new Error('You should specify at least one format')
     } else {
-      return getFormatFromPrompt(settings, options)
+      return getFormatFromPrompt(settings, command)
     }
   }
 
   return { formats: result }
 }
 
-const getFormatFromPrompt = (settings, options) => {
+const getFormatFromPrompt = (settings, command) => {
   let choices = defaultChoices
 
   if (!settings.kindlegenPath) {
     choices.splice(choices.indexOf('mobi'), 1)
   }
 
-  if (options.archive) {
+  if (command === commands.ARCHIVE) {
     choices.splice(choices.indexOf('pdf'), 1)
   }
 
