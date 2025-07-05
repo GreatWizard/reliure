@@ -50,7 +50,7 @@ const getFormatFromInline = (settings, command, options) => {
 }
 
 const getFormatFromPrompt = (settings, command) => {
-  let choices = defaultChoices
+  let choices = [...defaultChoices]
 
   if (!settings.kindlegenPath) {
     choices.splice(choices.indexOf('mobi'), 1)

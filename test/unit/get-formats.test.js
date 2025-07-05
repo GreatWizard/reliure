@@ -1,12 +1,16 @@
 import { assert, beforeEach, describe, expect, test, vi } from 'vitest'
 
+const inquirer = require('inquirer')
 const getFormat = require('../../src/get-formats.js')
 
 const consoleWarn = vi.spyOn(console, 'warn')
 
+let inquirerPrompt
+
 describe('get-formats', function () {
   beforeEach(() => {
     consoleWarn.mockClear()
+    inquirerPrompt?.mockClear()
   })
 
   describe('command line', function () {
@@ -77,6 +81,93 @@ describe('get-formats', function () {
       expect(formats).toMatchInlineSnapshot(`
         {
           "formats": [],
+        }
+      `)
+    })
+  })
+
+  describe('prompt', function () {
+    test('it proposes all the formats', async () => {
+      let settings = { kindlegenPath: true }
+      let command = 'GENERATE'
+      inquirerPrompt = vi.spyOn(inquirer, 'prompt').mockImplementation(([...args]) => {
+        expect(args[0]).toMatchInlineSnapshot(`
+          {
+            "choices": [
+              "epub",
+              "mobi",
+              "pdf",
+            ],
+            "default": [
+              "epub",
+            ],
+            "message": "Select the output formats:",
+            "name": "formats",
+            "type": "checkbox",
+          }
+        `)
+        return { formats: ['epub'] }
+      })
+      await getFormat(settings, command, {})
+    })
+
+    test('with kindlegenPath disabled, it removes mobi format from choices', async () => {
+      let settings = { kindlegenPath: false }
+      let command = 'GENERATE'
+      inquirerPrompt = vi.spyOn(inquirer, 'prompt').mockImplementation(([...args]) => {
+        expect(args[0]).toMatchInlineSnapshot(`
+          {
+            "choices": [
+              "epub",
+              "pdf",
+            ],
+            "default": [
+              "epub",
+            ],
+            "message": "Select the output formats:",
+            "name": "formats",
+            "type": "checkbox",
+          }
+        `)
+        return { formats: ['epub'] }
+      })
+      await getFormat(settings, command, {})
+    })
+
+    test('with archive option, it removes pdf format from choices', async () => {
+      let settings = { kindlegenPath: true }
+      let command = 'ARCHIVE'
+      inquirerPrompt = vi.spyOn(inquirer, 'prompt').mockImplementation(([...args]) => {
+        expect(args[0]).toMatchInlineSnapshot(`
+          {
+            "choices": [
+              "epub",
+              "mobi",
+            ],
+            "default": [
+              "epub",
+            ],
+            "message": "Select the output formats:",
+            "name": "formats",
+            "type": "checkbox",
+          }
+        `)
+        return { formats: ['epub'] }
+      })
+      await getFormat(settings, command, {})
+    })
+
+    test('it does not prompt if there is only one format left', async () => {
+      let settings = { kindlegenPath: false }
+      let command = 'ARCHIVE'
+      inquirerPrompt = vi.spyOn(inquirer, 'prompt').mockImplementation(() => {})
+      let formats = await getFormat(settings, command, {})
+      expect(inquirerPrompt).not.toHaveBeenCalled()
+      expect(formats).toMatchInlineSnapshot(`
+        {
+          "formats": [
+            "epub",
+          ],
         }
       `)
     })
