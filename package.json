@@ -96,7 +96,7 @@
     "vitest": "^3.2.4"
   },
   "githubReleases": {
-    "w3c/epubcheck": "v5.1.0"
+    "w3c/epubcheck": "v5.2.1"
   },
   "engines": {
     "node": ">=10.0.0"
