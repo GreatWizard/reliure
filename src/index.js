@@ -1,18 +1,17 @@
 #!/usr/bin/env node
-const clear = require('clear')
-const path = require('path')
+import clear from 'clear'
+import path from 'path'
 
-const build = require('./build')
-const { rearchive } = require('./build')
-const getArchiveFolder = require('./get-archive-folder')
-const { commands, getCommand } = require('./get-command')
-const getFormats = require('./get-formats')
-const { detectOrInstallKindlegen } = require('./kindlegen')
-const { initLogging, outputLogFile } = require('./log-file')
-const mergeConfig = require('./merge-config')
-const { printTitle, warn, info, success, error, log } = require('./message')
-const { getOptions, printVersion, printHelp } = require('./options')
-const { findConfig, readConfig, validateConfig } = require('./read-config')
+import build, { rearchive } from './build.js'
+import getArchiveFolder from './get-archive-folder.js'
+import { commands, getCommand } from './get-command.js'
+import getFormats from './get-formats.js'
+import { detectOrInstallKindlegen } from './kindlegen.js'
+import { initLogging, outputLogFile } from './log-file.js'
+import mergeConfig from './merge-config.js'
+import { printTitle, warn, info, success, error, log } from './message.js'
+import { getOptions, printVersion, printHelp } from './options.js'
+import { findConfig, readConfig, validateConfig } from './read-config.js'
 
 const settings = { kindlegenPath: undefined }
 
@@ -106,6 +105,6 @@ const options = getOptions()
     } else {
       printHelp()
     }
-    // eslint-disable-next-line no-process-exit
+
     process.exit(1)
   })

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   codes: ['en'],
   css: `section:not(.titlepage) p {
   margin: 0;

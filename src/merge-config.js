@@ -1,5 +1,5 @@
-const merge = require('lodash.merge')
+import merge from 'lodash.merge'
 
-module.exports = (config = { default: {} }, format = undefined) => {
+export default function (config = { default: {} }, format = undefined) {
   return merge({ format, filename: config.filename }, config.default, format ? config[format] : {})
 }

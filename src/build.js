@@ -1,17 +1,17 @@
-const fs = require('fs')
-const os = require('os')
-const path = require('path')
-const CleanCSS = require('clean-css')
-const yaml = require('js-yaml')
+import fs from 'fs'
+import os from 'os'
+import path from 'path'
+import CleanCSS from 'clean-css'
+import { dump } from 'js-yaml'
 
-const nodePandoc = require('./node-pandoc-promise')
+import nodePandoc from './node-pandoc-promise.js'
 
-const { latexHeader, latexNumber, latexImage, latexTOC, latexTitle, latexNewPage } = require('./helpers/latex')
-const { defaultStylesheet, generateFontsStylesheet, getLanguageStylesheet } = require('./helpers/stylesheet')
-const { generateFontFilename } = require('./helpers/fonts')
-const { parseBool } = require('./utils')
-const { epubToMobi } = require('./kindlegen')
-const {
+import { latexHeader, latexNumber, latexImage, latexTOC, latexTitle, latexNewPage } from './helpers/latex.js'
+import { defaultStylesheet, generateFontsStylesheet, getLanguageStylesheet } from './helpers/stylesheet.js'
+import { generateFontFilename } from './helpers/fonts.js'
+import { parseBool } from './utils.js'
+import { epubToMobi } from './kindlegen.js'
+import {
   extract,
   archive,
   replaceGeneratorMetadata,
@@ -19,8 +19,8 @@ const {
   navSubstitutions,
   opfSubstitutions,
   appendExtraMetadata,
-} = require('./edition')
-const { success } = require('./message')
+} from './edition.js'
+import { success } from './message.js'
 
 const FORMATS = [
   { name: 'LaTeX', extension: 'tex' },
@@ -29,7 +29,7 @@ const FORMATS = [
   { name: 'Microsoft Word', extension: 'docx' },
 ]
 
-module.exports = async (config, options = {}) => {
+export default async function (config, options = {}) {
   let cwd = options.cwd || process.cwd()
 
   // Check existence of stylesheets
@@ -161,7 +161,7 @@ module.exports = async (config, options = {}) => {
   // add metadata
   if (config.metadata) {
     let metadataFile = path.join(tempPath, 'metadata.yml')
-    let yamlDoc = yaml.dump(config.metadata)
+    let yamlDoc = dump(config.metadata)
     fs.writeFileSync(metadataFile, yamlDoc, 'utf8')
     args.push('--metadata-file', metadataFile)
   }
@@ -217,7 +217,7 @@ module.exports = async (config, options = {}) => {
   }
 }
 
-module.exports.rearchive = async (inputFolder, options) => {
+export async function rearchive(inputFolder, options) {
   // The epub has the same name as the folder we rearchive
   let outputFile = `${inputFolder}.epub`
   await archive(path.resolve(inputFolder), outputFile)

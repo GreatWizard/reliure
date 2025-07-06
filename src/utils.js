@@ -1,5 +1,5 @@
 // Following https://yaml.org/type/bool.html
-module.exports.parseBool = (value) => {
+export function parseBool(value) {
   switch (value) {
     case true:
     case 'y':
@@ -32,7 +32,7 @@ module.exports.parseBool = (value) => {
   }
 }
 
-module.exports.humanizePlatformArch = (platform, arch) => {
+export function humanizePlatformArch(platform, arch) {
   switch (platform) {
     case 'darwin':
       return `macOS ${arch}`
@@ -45,4 +45,6 @@ module.exports.humanizePlatformArch = (platform, arch) => {
   }
 }
 
-module.exports.cleanArray = (array = []) => [...new Set(array)].filter(Boolean)
+export function cleanArray(array = []) {
+  return [...new Set(array)].filter(Boolean)
+}

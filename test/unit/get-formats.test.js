@@ -1,14 +1,14 @@
-import { assert, beforeEach, describe, expect, test, vi } from 'vitest'
+import { afterEach, assert, describe, expect, test, vi } from 'vitest'
+import inquirer from 'inquirer'
 
-const inquirer = require('inquirer')
-const getFormat = require('../../src/get-formats.js')
+import { default as getFormat } from '../../src/get-formats.js'
 
 const consoleWarn = vi.spyOn(console, 'warn')
 
 let inquirerPrompt
 
 describe('get-formats', function () {
-  beforeEach(() => {
+  afterEach(() => {
     consoleWarn.mockClear()
     inquirerPrompt?.mockClear()
   })

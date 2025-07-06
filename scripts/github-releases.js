@@ -1,8 +1,9 @@
-// eslint-disable-next-line node/no-unpublished-require
-const downloadReleases = require('download-github-release')
-const fs = require('fs')
-const path = require('path')
+import downloadReleases from 'download-github-release'
+import fs from 'fs'
+import path from 'path'
+import { createRequire } from 'module'
 
+const require = createRequire(import.meta.url)
 const packageJson = require('../package.json')
 
 const releases = packageJson.githubReleases || {}

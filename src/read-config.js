@@ -1,12 +1,12 @@
-const fs = require('fs')
-const path = require('path')
-const yaml = require('js-yaml')
+import fs from 'fs'
+import path from 'path'
+import { load } from 'js-yaml'
 
-const { schemaReliure } = require('./schemas')
+import { schemaReliure } from './schemas.js'
 
 const DEFAULT_FILENAME = 'reliure.yml'
 
-module.exports.findConfig = (pathOption) => {
+export function findConfig(pathOption) {
   if (!pathOption) {
     pathOption = DEFAULT_FILENAME
   }
@@ -30,18 +30,17 @@ module.exports.findConfig = (pathOption) => {
   }
 }
 
-module.exports.readConfig = (filename) => {
+export function readConfig(filename) {
   try {
     let rawConfig = fs.readFileSync(filename, 'utf8')
-    return yaml.load(rawConfig)
+    return load(rawConfig)
   } catch (e) {
     throw new Error(
       `Please run binding in the directory where the configuration file "${DEFAULT_FILENAME}" is located.`,
     )
   }
 }
-
-module.exports.validateConfig = (config) => {
+export function validateConfig(config) {
   let { error } = schemaReliure.validate(config, { abortEarly: false })
   if (error) {
     throw new Error(`Configuration file is invalid:${error.details.map((detail) => `\n  - ${detail.message}`)}`)

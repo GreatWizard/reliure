@@ -1,4 +1,4 @@
-const Joi = require('joi')
+import Joi from 'joi'
 
 const schemaStrings = Joi.array().items(Joi.string())
 
@@ -103,7 +103,7 @@ const schemaDefaultFormat = schemaFormat.append(defaultObject).append(ebookObjec
 const schemaEbookFormat = schemaFormat.append(ebookObject)
 const schemaPDFFormat = schemaFormat.append(pdfObject)
 
-module.exports.schemaReliure = Joi.object({
+export const schemaReliure = Joi.object({
   filename: Joi.string().required(),
   default: schemaDefaultFormat,
   epub: schemaEbookFormat,
