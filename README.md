@@ -18,6 +18,7 @@ Bind your books for e-readers.
 - Supports custom fonts (ttf and otf)
 - Supports cover image
 - Supports metadata
+- Archives folders following the epub specification as epub and mobi
 
 ### Features only for ebooks (epub and mobi)
 
@@ -140,6 +141,7 @@ Usage: `reliure [options] [configuration file/directory]`
 - `--pdf`: Specify to bound the pdf format
 - `--kindlegen-path`: Specify the kindlegen location
 - `--non-interactive`: Does not prompt for any input
+- `-a` `--archive`: Zip a folder that implements the epub specification. If you use this option, the config should be the path to the folder to archive. (This feature creates the epub and can additionally create the mobi. It's incompatible with pdf though, because the pdf is not created out of the epub.)
 - `-v`, `--version`: Print the version number
 - `-h`, `--help`: Print usage information
 
@@ -150,6 +152,7 @@ reliure --epub --mobi
 reliure --epub --pdf my-project/
 reliure --epub --pdf my-complex-project/reliure-config.yml
 reliure --mobi --kindlegen-path=/usr/local/bin/kindlegen my-project/reliure.yml
+reliure --archive --mobi my-unzipped-epub-i-manually-changed/
 reliure -v
 reliure --version
 ```
