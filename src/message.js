@@ -1,32 +1,32 @@
-const chalk = require('chalk')
-const figlet = require('figlet')
+import chalk from 'chalk'
+import figlet from 'figlet'
 
 const orange = '#ffb86c'
 
-module.exports.printTitle = () => {
+export function printTitle() {
   console.log(chalk.hex(orange).bold(figlet.textSync('Reliure', { horizontalLayout: 'full' })))
 }
 
-module.exports.info = (message, icon = '📘') => {
+export function info(message, icon = '📘') {
   console.info(chalk.cyan(`${icon} ${message}`))
 }
 
-module.exports.success = (message, icon = '📗') => {
+export function success(message, icon = '📗') {
   console.log(chalk.green(`${icon} ${message}`))
 }
 
-module.exports.warn = (message, icon = '📙') => {
+export function warn(message, icon = '📙') {
   console.warn(chalk.hex(orange)(`${icon} ${message}`))
 }
 
-module.exports.error = (message, icon = '📕') => {
+export function error(message, icon = '📕') {
   console.error(chalk.red(`${icon} ${message}`))
 }
 
-module.exports.debug = (message, icon = '⚙️') => {
+export function debug(message, icon = '⚙️') {
   console.log(chalk.gray(`${icon} ${message}`))
 }
 
-module.exports.log = (message = '') => {
+export function log(message = '') {
   console.log(message)
 }

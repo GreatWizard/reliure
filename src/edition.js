@@ -1,8 +1,8 @@
-const fs = require('fs')
-const path = require('path')
-const unzipper = require('unzipper')
-const archiver = require('archiver')
-const replace = require('replace')
+import fs from 'fs'
+import path from 'path'
+import unzipper from 'unzipper'
+import archiver from 'archiver'
+import replace from 'replace'
 
 const METADATA_TAG = '  </metadata>'
 
@@ -18,7 +18,7 @@ const substitute = (filePath, substitutions = []) => {
   })
 }
 
-module.exports.extract = async (tempPath, source) => {
+export async function extract(tempPath, source) {
   const zip = fs.createReadStream(source).pipe(unzipper.Parse({ forceStream: true }))
   for await (const entry of zip) {
     const fileName = entry.path
@@ -28,7 +28,7 @@ module.exports.extract = async (tempPath, source) => {
   }
 }
 
-module.exports.archive = async (tempPath, destination) => {
+export async function archive(tempPath, destination) {
   let output = fs.createWriteStream(destination)
   let archive = archiver('zip', { zlib: { level: 9 } })
   archive.pipe(output)
@@ -38,19 +38,19 @@ module.exports.archive = async (tempPath, destination) => {
   await archive.finalize()
 }
 
-module.exports.textSubstitutions = (tempPath, substitutions = []) => {
+export function textSubstitutions(tempPath, substitutions = []) {
   substitute(path.join(tempPath, 'EPUB', 'text'), substitutions)
 }
 
-module.exports.navSubstitutions = (tempPath, substitutions = []) => {
+export function navSubstitutions(tempPath, substitutions = []) {
   substitute(path.join(tempPath, 'EPUB', 'nav.xhtml'), substitutions)
 }
 
-module.exports.opfSubstitutions = (tempPath, substitutions = []) => {
+export function opfSubstitutions(tempPath, substitutions = []) {
   substitute(path.join(tempPath, 'EPUB', 'content.opf'), substitutions)
 }
 
-module.exports.appendExtraMetadata = (tempPath, extraMetadata = {}) => {
+export function appendExtraMetadata(tempPath, extraMetadata = {}) {
   let html = ''
   Object.keys(extraMetadata).forEach((name) => {
     html += `    <meta name="${name}" content="${extraMetadata[name]}" />
@@ -71,7 +71,7 @@ const findFilesSync = (dir, ext) => {
     .map((fileName) => path.join(dir, fileName))
 }
 
-module.exports.replaceGeneratorMetadata = (tempPath) => {
+export function replaceGeneratorMetadata(tempPath) {
   let textFiles = [
     ...findFilesSync(path.join(tempPath, 'EPUB'), '.xhtml'),
     ...findFilesSync(path.join(tempPath, 'EPUB', 'text'), '.xhtml'),

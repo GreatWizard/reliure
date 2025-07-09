@@ -1,9 +1,9 @@
-const { cleanArray } = require('../utils')
-const { generateFontFilename } = require('./fonts')
+import { cleanArray } from '../utils.js'
+import { generateFontFilename } from './fonts.js'
 
 const defaultPackages = ['{tikz}', '{graphicx}', '{sectsty}']
 
-module.exports.latexHeader = (latexPackages = [], fonts = {}) => {
+export function latexHeader(latexPackages = [], fonts = {}) {
   let header = ''
   let allPackages = [...defaultPackages, ...latexPackages]
   if (fonts.main) {
@@ -25,11 +25,11 @@ module.exports.latexHeader = (latexPackages = [], fonts = {}) => {
   return header
 }
 
-module.exports.latexNumber = (number = true) => {
+export function latexNumber(number = true) {
   return `\\thispagestyle{${number ? 'plain' : 'empty'}}\n`
 }
 
-module.exports.latexImage = (coverImage) => {
+export function latexImage(coverImage) {
   return `\\begin{tikzpicture}[remember picture,overlay]
   \\node[inner sep=0pt] at (current page.center) {%
     \\includegraphics[width=\\paperwidth,height=\\paperheight]{${coverImage}}%
@@ -37,14 +37,14 @@ module.exports.latexImage = (coverImage) => {
 \\end{tikzpicture}\n`
 }
 
-module.exports.latexTitle = () => {
+export function latexTitle() {
   return `\\maketitle\n`
 }
 
-module.exports.latexTOC = () => {
+export function latexTOC() {
   return `\\tableofcontents\n`
 }
 
-module.exports.latexNewPage = () => {
+export function latexNewPage() {
   return `\\newpage\n`
 }

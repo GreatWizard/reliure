@@ -1,5 +1,5 @@
-const { writeFile } = require('fs/promises')
-const { join, resolve } = require('path')
+import { writeFile } from 'fs/promises'
+import { join, resolve } from 'path'
 
 const LOG_FILENAME = 'reliure.log'
 
@@ -8,7 +8,7 @@ let isEnabled = false
 let location = '.'
 let originalStderrtWrite = undefined
 
-module.exports.initLogging = () => {
+export function initLogging() {
   isEnabled = true
   location = resolve('.')
   originalStderrtWrite = process.stderr.write.bind(process.stderr)
@@ -20,7 +20,7 @@ module.exports.initLogging = () => {
   }
 }
 
-module.exports.outputLogFile = async (error) => {
+export async function outputLogFile(error) {
   if (!isEnabled) return
   if (error) console.trace(error)
   await writeFile(join(location, LOG_FILENAME), output, 'utf-8')

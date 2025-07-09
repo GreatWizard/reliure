@@ -1,21 +1,22 @@
-const inquirer = require('inquirer')
-const { log } = require('./message')
+import inquirer from 'inquirer'
 
-module.exports.commands = {
+import { log } from './message.js'
+
+export const commands = {
   GENERATE: 'GENERATE',
   ARCHIVE: 'ARCHIVE',
 }
 
-module.exports.getCommand = async (options = {}) => {
+export async function getCommand(options = {}) {
   let command
   if (Object.keys(options).length > 0) {
-    command = options.archive ? this.commands.ARCHIVE : this.commands.GENERATE
+    command = options.archive ? commands.ARCHIVE : commands.GENERATE
   } else {
     command = await getCommandFromPrompt()
   }
 
   switch (command) {
-    case this.commands.ARCHIVE:
+    case commands.ARCHIVE:
       log('\nReliure will (re-)archive a folder that follows epub specification.\n')
       break
     default:
@@ -38,5 +39,5 @@ const getCommandFromPrompt = async () => {
     },
   ])
 
-  return answer.commands === choices[0] ? this.commands.GENERATE : this.commands.ARCHIVE
+  return answer.commands === choices[0] ? commands.GENERATE : commands.ARCHIVE
 }

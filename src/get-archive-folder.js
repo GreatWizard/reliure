@@ -1,13 +1,14 @@
-const fs = require('fs')
-const path = require('path')
-const inquirer = require('inquirer')
-const { error } = require('./message')
+import fs from 'fs'
+import path from 'path'
+import inquirer from 'inquirer'
 
-module.exports = async () => {
+import { error } from './message.js'
+
+export default async function () {
   return ensureInput()
 }
 
-const getInput = async () => {
+async function getInput() {
   const { folderPath } = await inquirer.prompt([
     {
       type: 'input',
@@ -18,7 +19,7 @@ const getInput = async () => {
   return folderPath
 }
 
-const ensureInput = async () => {
+async function ensureInput() {
   let folderPath = await getInput()
   folderPath = path.resolve(folderPath)
 

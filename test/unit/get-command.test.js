@@ -1,14 +1,14 @@
-import { assert, beforeEach, describe, expect, test, vi } from 'vitest'
+import { afterEach, assert, describe, expect, test, vi } from 'vitest'
+import inquirer from 'inquirer'
 
-const inquirer = require('inquirer')
-const { commands, getCommand } = require('../../src/get-command.js')
+import { commands, getCommand } from '../../src/get-command.js'
 
 const consoleLog = vi.spyOn(console, 'log')
 
 let inquirerPrompt
 
 describe('get-command', function () {
-  beforeEach(() => {
+  afterEach(() => {
     consoleLog.mockClear()
     inquirerPrompt?.mockClear()
   })

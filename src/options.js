@@ -1,8 +1,11 @@
-const chalk = require('chalk')
-const commandLineArgs = require('command-line-args')
-const commandLineUsage = require('command-line-usage')
+import chalk from 'chalk'
+import commandLineArgs from 'command-line-args'
+import commandLineUsage from 'command-line-usage'
+import { createRequire } from 'module'
 
-const { log } = require('./message')
+import { log } from './message.js'
+
+const require = createRequire(import.meta.url)
 const { version } = require('../package.json')
 
 const optionList = [
@@ -60,7 +63,7 @@ const optionList = [
   },
 ]
 
-module.exports.getOptions = () => {
+export function getOptions() {
   let options = commandLineArgs([
     ...optionList,
     {
@@ -74,11 +77,11 @@ module.exports.getOptions = () => {
   return options
 }
 
-module.exports.printVersion = () => {
+export function printVersion() {
   log(`v${version}`)
 }
 
-module.exports.printHelp = () => {
+export function printHelp() {
   log(
     commandLineUsage([
       {

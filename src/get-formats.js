@@ -1,11 +1,11 @@
-const inquirer = require('inquirer')
+import inquirer from 'inquirer'
 
-const { warn } = require('./message')
-const { commands } = require('./get-command')
+import { warn } from './message.js'
+import { commands } from './get-command.js'
 
 const defaultChoices = ['epub', 'mobi', 'pdf']
 
-module.exports = (settings, command, options = {}) => {
+export default function (settings, command, options = {}) {
   if (Object.keys(options).length > 0) {
     return getFormatFromInline(settings, command, options)
   } else {

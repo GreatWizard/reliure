@@ -1,15 +1,15 @@
-const cliProgress = require('cli-progress')
-const fs = require('fs')
-const inquirer = require('inquirer')
-const os = require('os')
-const path = require('path')
-const fetch = require('node-fetch')
-const { spawn } = require('child_process')
-const tar = require('tar')
-const unzipper = require('unzipper')
+import cliProgress from 'cli-progress'
+import fs from 'fs'
+import inquirer from 'inquirer'
+import os from 'os'
+import path from 'path'
+import fetch from 'node-fetch'
+import { spawn } from 'child_process'
+import tar from 'tar'
+import unzipper from 'unzipper'
 
-const { debug, log, warn } = require('./message')
-const { humanizePlatformArch } = require('./utils')
+import { debug, log, warn } from './message.js'
+import { humanizePlatformArch } from './utils.js'
 
 const kindlegenFilename = () => (process.platform === 'win32' ? 'kindlegen.exe' : 'kindlegen')
 const localKindlegenPath = () => path.resolve(process.cwd(), kindlegenFilename())
@@ -92,7 +92,7 @@ const extractKindleGen = (file) => {
   throw new Error('Unsupported file format')
 }
 
-module.exports.epubToMobi = (input, output, options = {}) => {
+export function epubToMobi(input, output, options = {}) {
   let kindlegenPath = options.kindlegenPath || localKindlegenPath()
   return new Promise((resolve, reject) => {
     const opts = ['-c2', '-dont_append_source']
@@ -120,7 +120,7 @@ module.exports.epubToMobi = (input, output, options = {}) => {
   })
 }
 
-module.exports.detectOrInstallKindlegen = async (options = {}) => {
+export async function detectOrInstallKindlegen(options = {}) {
   let kindlegenPath = options['kindlegen-path']
   let binUrl = undefined
   if (process.platform === 'darwin' && process.arch === 'x32') {

@@ -1,8 +1,9 @@
-const stat = require('fs').stat
-const spawn = require('child_process').spawn
-const { debug, log } = require('./message')
+import { stat } from 'fs'
+import { spawn } from 'child_process'
 
-module.exports = function (src, args = [], spawnOptions = {}, pandocPath = 'pandoc', options = {}) {
+import { debug, log } from './message.js'
+
+export default async function (src, args = [], spawnOptions = {}, pandocPath = 'pandoc', options = {}) {
   if (options.debug) {
     debug('*** pandoc build')
     debug(JSON.stringify(spawnOptions, 0, 2))
