@@ -35,9 +35,10 @@ export function readConfig(filename) {
     let rawConfig = fs.readFileSync(filename, 'utf8')
     return load(rawConfig)
   } catch (e) {
-    throw new Error(
-      `Please run binding in the directory where the configuration file "${DEFAULT_FILENAME}" is located.`,
-    )
+    throw new Error(`
+      Could not read the configuration file "${filename}". Please check for syntax errors.
+      ${e}
+    `)
   }
 }
 export function validateConfig(config) {
