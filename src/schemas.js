@@ -73,6 +73,7 @@ const schemaFormat = Joi.object({
     main: schemaFont,
   }),
   files: schemaStrings,
+  includeInHeader: schemaStrings,
   metadata: schemaMetadata,
   extraMetadata: Joi.object()
     .with('calibre:series', 'calibre:series_index')
