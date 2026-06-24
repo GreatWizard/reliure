@@ -1,0 +1,25 @@
+filename: My Ebook
+
+default:
+  styleSheets:
+    - ../center.css
+  files:
+    - ebook.tex
+  metadata:
+    title: Divider demo
+    author: Marine Dunstetter
+    date: 2021-05
+    lang: en-US
+  textSubstitutions:
+    - regex: <p><img src="../media/file0.svg" alt="image" /></p>
+      replacement: <p class="center"><img src="../media/file0.svg" alt="***" /></p>
+
+epub:
+  metadata:
+    identifier: 'urn:isbn:1234567890123'
+    rights: 'ISBN: 123-4-5678901-2-3'
+
+mobi:
+  metadata:
+    identifier: 'urn:isbn:1234567890145'
+    rights: 'ISBN: 123-4-5678901-4-5'
