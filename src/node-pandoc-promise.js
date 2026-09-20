@@ -1,4 +1,4 @@
-import { stat } from 'fs'
+import { stat } from 'fs/promises'
 import { spawn } from 'child_process'
 
 import { debug, log } from './message.js'
@@ -12,7 +12,9 @@ export default async function (src, args = [], spawnOptions = {}, pandocPath = '
 
   return new Promise((resolve, reject) => {
     // Check file status of src
-    stat(src, (_err, stats) => {
+    const stats = stat(src)
+
+    stats.then((stats) => {
       // Check if src is URL match.
       const isURL = /^(https?|ftp):\/\//i.test(src)
 
@@ -28,11 +30,11 @@ export default async function (src, args = [], spawnOptions = {}, pandocPath = '
         pdSpawn.stdin.end(src, 'utf-8')
       }
 
-      let result = ''
+      let result = Buffer.alloc(0)
       let error = ''
 
       pdSpawn.stdout.on('data', (data) => {
-        result += data
+        result = Buffer.concat([result, data])
         if (options.debug) {
           log(data)
         }
